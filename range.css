@@ -1,0 +1,61 @@
+input[type="range"] {
+  box-sizing: border-box;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  width: 90%;
+  margin-left: 5%;
+  padding: 0 2px;
+  /* Add some L/R padding to ensure box shadow of handle is shown */
+  overflow: hidden;
+  border: 0;
+  border-radius: 1px;
+  outline: none;
+  background: linear-gradient(rgb(79, 128, 201), rgb(79, 128, 201)) no-repeat center;
+  /* Use a linear gradient to generate only the 2px height background */
+  background-size: 100% 2px;
+  pointer-events: none;
+}
+input[type="range"]:active,
+input[type="range"]:focus {
+  outline: none;
+}
+input[type="range"]::-webkit-slider-thumb {
+  height: 28px;
+  width: 28px;
+  border-radius: 50%;
+  background-color: rgb(8, 48, 107);
+  position: relative;
+  margin: 5px 0;
+  /* Add some margin to ensure box shadow is shown */
+  cursor: pointer;
+  -webkit-appearance: none;
+  appearance: none;
+  pointer-events: all;
+  box-shadow: 0 1px 4px 0.5px rgba(0, 0, 0, 0.25);
+}
+.multi-range {
+  position: relative;
+  height: 75px;
+  width: 100%;
+  padding-top: 25px;
+  background: #39465a8f;
+}
+.multi-range input[type="range"] {
+  position: absolute;
+}
+.multi-range input[type="range"]:nth-of-type(2) {
+  background: none;
+}
+.multi-range output {
+  position: absolute;
+  top: 5px;
+  color: white;
+  font-weight: 100;
+}
+.multi-range output.left {
+  left: 5%;
+}
+.multi-range output.right {
+  right: 5%;
+}

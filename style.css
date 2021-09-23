@@ -337,16 +337,13 @@ body > footer {
   position: relative;
 }
 
-#departement {
+#filters {
   position: absolute;
-  width: 100vw;
-  height: 100vh;
-  top: 0;
   left: 0;
+  bottom: 0;
   z-index: 9999;
-  /* border: 1px solid red; */
-  display: none;
   overflow: hidden;
+  width: 100vw;
 }
 
 .departement {
@@ -390,5 +387,7 @@ svg {
 
 circle {
   stroke: rgb(28, 37, 75);
+  stroke-width: 0.1px;
   user-select: none;
+  pointer-events: none;
 }

@@ -45,7 +45,6 @@
         clicked(e.target, d);
       });
 
-    // Quantile scales map an input domain to a discrete range, 0...max(population) to 1...9
     var quantile = d3
       .scaleQuantile()
       .domain([0, d3.max(csv, (e) => +e.POP)])
@@ -75,13 +74,13 @@
     svg
       .append("g")
       .attr("transform", "translate(95, 430)")
-      .call(d3.axisLeft(legendScale).ticks(6));
+      .call(d3.axisLeft(legendScale).ticks(7));
 
     csv.forEach(function (e, i) {
       d3.select("#d" + e.CODE_DEPT)
         .attr("class", (d) => "departement q" + quantile(+e.POP) + "-9")
         .on("mouseover", function (d) {
-          div.transition().duration(200).style("opacity", 0.9);
+          div.transition().duration(200).style("opacity", 0.65);
           div
             .html(
               `<b>Région : </b> ${e.NOM_REGION}<br>
@@ -96,7 +95,7 @@
             .style("top", d.pageY - 30 + "px");
         })
         .on("mouseout", function (d) {
-          div.style("opacity", 0);
+          div.transition().duration(200).style("opacity", 0);
           div.html("").style("left", "-500px").style("top", "-500px");
         });
     });
@@ -124,7 +123,7 @@
         dy = bounds[1][1] - bounds[0][1],
         x = (bounds[0][0] + bounds[1][0]) / 2,
         y = (bounds[0][1] + bounds[1][1]) / 2,
-        scale = 0.9 / Math.max(dx / width, dy / height),
+        scale = 0.7 / Math.max(dx / width, dy / height),
         translate = [width / 2 - scale * x, height / 2 - scale * y];
 
       deps
@@ -133,7 +132,7 @@
         .style("stroke-width", 1.5 / scale + "px")
         .attr("transform", "translate(" + translate + ")scale(" + scale + ")");
 
-      loadData(d);
+      loadData(d, scale);
     }
 
     function reset() {
@@ -150,21 +149,54 @@
         .attr("transform", "");
     }
 
-    function loadData(dept) {
+    function loadData(dept, scale) {
       let accidents = caracts.filter(
         (c) => c.dep.padStart(2, "0") == dept.properties.CODE_DEPT
       );
-      console.log(dept, accidents);
+      console.log(accidents);
 
       deps
         .selectAll("circle")
         .data(accidents)
         .enter()
         .append("circle")
-        .attr("r", 0.5)
+        .attr("r", 5 / scale)
         .attr("transform", function (d) {
           return "translate(" + projection([d.long, d.lat]) + ")";
         });
+
+      const domain = [0, d3.max(accidents, (e) => +e.lum)];
+      var quantile = d3.scaleQuantile().domain(domain).range(d3.range(5));
+
+      var legend = svg
+        .append("g")
+        .attr("transform", "translate(100, 430)")
+        .attr("id", "legend");
+
+      legend
+        .selectAll(".colorbar")
+        .data(d3.range(5))
+        .enter()
+        .append("svg:rect")
+        .attr("y", (d) => d * 20 + "px")
+        .attr("height", "20px")
+        .attr("width", "20px")
+        .attr("x", "0px")
+        .attr("class", (d) => "a" + d + "-9");
+
+      var legendScale = d3
+        .scaleLinear()
+        .domain(domain)
+        .range([0, 5 * 20]);
+
+      svg
+        .append("g")
+        .attr("transform", "translate(95, 430)")
+        .call(d3.axisRight(legendScale).ticks(5));
+
+      document.querySelectorAll("circle").forEach((el) => {
+        el.classList.add("a" + (quantile(el.__data__.lum) - 1) + "-5");
+      });
     }
   });
 })();

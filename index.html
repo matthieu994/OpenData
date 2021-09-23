@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="colorbrewer.css" />
+  </head>
+  <body>
+    <div id="france"></div>
+    <div id="departement"></div>
+
+    <script>
+      const promises = [];
+      promises.push(d3.json("data/departments.json"));
+      promises.push(d3.csv("data/population.csv"));
+      promises.push(d3.csv("data/caracteristiques-2019.csv"));
+    </script>
+    <script src="map.js"></script>
+    <script src="departement.js"></script>
+  </body>
+</html>

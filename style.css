@@ -344,6 +344,7 @@ body > footer {
   z-index: 9999;
   overflow: hidden;
   width: 100vw;
+  background: #39465a8f;
 }
 
 .departement {

@@ -3,8 +3,7 @@ input[type="range"] {
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
-  width: 90%;
-  margin-left: 5%;
+  width: 100%;
   padding: 0 2px;
   /* Add some L/R padding to ensure box shadow of handle is shown */
   overflow: hidden;
@@ -37,9 +36,9 @@ input[type="range"]::-webkit-slider-thumb {
 .multi-range {
   position: relative;
   height: 75px;
-  width: 100%;
+  width: 90%;
   padding-top: 25px;
-  background: #39465a8f;
+  margin: auto;
 }
 .multi-range input[type="range"] {
   position: absolute;
@@ -52,10 +51,5 @@ input[type="range"]::-webkit-slider-thumb {
   top: 5px;
   color: white;
   font-weight: 100;
-}
-.multi-range output.left {
-  left: 5%;
-}
-.multi-range output.right {
-  right: 5%;
+  transition: all 0.15s;
 }

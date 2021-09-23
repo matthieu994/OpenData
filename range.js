@@ -30,14 +30,25 @@ lowerSlider.oninput = function () {
   updateRangeValues();
 };
 
-function updateRangeValues() {
-  lowerVal = parseInt(lowerSlider.value);
-  upperVal = parseInt(upperSlider.value);
+function updateRangeValues(low = lowerSlider.value, up = upperSlider.value) {
+  lowerVal = parseInt(low);
+  upperVal = parseInt(up);
   lowerOutput.textContent = `${String(lowerVal).padStart(2, "0")}:00`;
   upperOutput.textContent = `${String(upperVal - 1).padStart(2, "0")}:59`;
+  lowerOutput.style.left = `calc(${(lowerVal / (parseInt(lowerSlider.max) + 1)) * 100}%)`;
+  upperOutput.style.left = `calc(${(upperVal / (parseInt(lowerSlider.max) + 1)) * 100}%)`;
+  lowerOutput.style.marginLeft = upperVal - lowerVal < 2 ? `-5px` : "";
+  upperOutput.style.marginLeft = upperVal - lowerVal < 2 ? `5px` : "";
+  setCircleOpacity();
+}
 
-  const newLowerVal = Number(
-    ((lowerVal - lowerSlider.min) * 100) / (lowerSlider.max - lowerSlider.min)
-  );
-  lowerOutput.style.left = `calc(${newLowerVal}% + (${8 - newLowerVal * 0.15}px))`;
+function setCircleOpacity() {
+  document.querySelectorAll("circle").forEach((c) => {
+    const hours = parseInt(c.__data__.hrmn.split(":")[0]);
+    if (hours < lowerVal || hours >= upperVal) {
+      c.style.opacity = 0.2;
+    } else {
+      c.style.opacity = 1;
+    }
+  });
 }

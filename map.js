@@ -153,7 +153,6 @@
       let accidents = caracts.filter(
         (c) => c.dep.padStart(2, "0") == dept.properties.CODE_DEPT
       );
-      console.log(accidents);
 
       deps
         .selectAll("circle")
@@ -168,35 +167,37 @@
       const domain = [0, d3.max(accidents, (e) => +e.lum)];
       var quantile = d3.scaleQuantile().domain(domain).range(d3.range(5));
 
-      var legend = svg
-        .append("g")
-        .attr("transform", "translate(100, 430)")
-        .attr("id", "legend");
+      // var legend = svg
+      //   .append("g")
+      //   .attr("transform", "translate(100, 430)")
+      //   .attr("id", "legend");
 
-      legend
-        .selectAll(".colorbar")
-        .data(d3.range(5))
-        .enter()
-        .append("svg:rect")
-        .attr("y", (d) => d * 20 + "px")
-        .attr("height", "20px")
-        .attr("width", "20px")
-        .attr("x", "0px")
-        .attr("class", (d) => "a" + d + "-9");
+      // legend
+      //   .selectAll(".colorbar")
+      //   .data(d3.range(5))
+      //   .enter()
+      //   .append("svg:rect")
+      //   .attr("y", (d) => d * 20 + "px")
+      //   .attr("height", "20px")
+      //   .attr("width", "20px")
+      //   .attr("x", "0px")
+      //   .attr("class", (d) => "a" + d + "-9");
 
-      var legendScale = d3
-        .scaleLinear()
-        .domain(domain)
-        .range([0, 5 * 20]);
+      // var legendScale = d3
+      //   .scaleLinear()
+      //   .domain(domain)
+      //   .range([0, 5 * 20]);
 
-      svg
-        .append("g")
-        .attr("transform", "translate(95, 430)")
-        .call(d3.axisRight(legendScale).ticks(5));
+      // svg
+      //   .append("g")
+      //   .attr("transform", "translate(95, 430)")
+      //   .call(d3.axisRight(legendScale).ticks(5));
 
       document.querySelectorAll("circle").forEach((el) => {
         el.classList.add("a" + (quantile(el.__data__.lum) - 1) + "-5");
       });
+
+      setCircleOpacity();
     }
   });
 })();

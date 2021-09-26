@@ -33,6 +33,20 @@ input[type="range"]::-webkit-slider-thumb {
   pointer-events: all;
   box-shadow: 0 1px 4px 0.5px rgba(0, 0, 0, 0.25);
 }
+input[type="range"]::-moz-range-thumb {
+  height: 15px;
+  width: 15px;
+  border-radius: 50%;
+  background-color: rgb(8, 48, 107);
+  position: relative;
+  margin: 5px 0;
+  /* Add some margin to ensure box shadow is shown */
+  cursor: pointer;
+  -moz-appearance: none;
+  appearance: none;
+  pointer-events: all;
+  box-shadow: 0 1px 4px 0.5px rgba(0, 0, 0, 0.25);
+}
 .multi-range {
   position: relative;
   height: 75px;

@@ -25,12 +25,14 @@
 
   // Append the group that will contain our paths
   const deps = svg.append("g");
+  let g_accidents;
 
   /********************* Create deps and handle data *********************/
   Promise.all(promises).then(function (values) {
     const geojson = values[0];
     const csv = values[1];
     const caracts = values[2];
+    const arrondissements = values[3];
 
     deps
       .selectAll("path")
@@ -42,8 +44,26 @@
       .on("click", (e) => {
         const id = e.target.id.substr(1);
         const d = geojson.features.find((f) => f.properties.CODE_DEPT == id);
-        clicked(e.target, d);
+        clicked(e.target, d, id == 75);
       });
+
+    deps
+      .append("g")
+      .attr("id", "arrondissements")
+      .selectAll("path")
+      .data(arrondissements.features)
+      .enter()
+      .append("path")
+      .attr("id", (d) => "a" + d.properties.c_ar)
+      .attr("class", "arrondissement")
+      .attr("d", path)
+      .on("click", (e) => {
+        const id = e.target.id.substr(1);
+        const d = arrondissements.features.find((f) => f.properties.c_ar == id);
+        clicked(e.target, d, true);
+      });
+
+    g_accidents = deps.append("g");
 
     var quantile = d3
       .scaleQuantile()
@@ -111,8 +131,22 @@
       .attr("class", "tooltip")
       .style("opacity", 0);
 
-    function clicked(target, d) {
-      if (active.node() === target) return reset();
+    function clicked(target, d, isParis = false) {
+      if (active.node()?.id === target?.id) {
+        console.log("reset");
+        return reset();
+      }
+      if (isParis) {
+        document.querySelector("#arrondissements").classList.add("selected");
+        if (d?.properties?.CODE_DEPT) {
+          document.querySelector("#arrondissements").classList.add("overview");
+        } else {
+          document.querySelector("#arrondissements").classList.remove("overview");
+        }
+      } else {
+        document.querySelector("#arrondissements").classList.remove("selected");
+      }
+
       deps.selectAll("circle").remove();
       active.classed("selected", false);
       document.body.classList.add("selected");
@@ -132,12 +166,15 @@
         .style("stroke-width", 1.5 / scale + "px")
         .attr("transform", "translate(" + translate + ")scale(" + scale + ")");
 
-      loadData(d, scale);
+      if (!isParis) {
+        loadData(d, scale);
+      }
     }
 
     function reset() {
       active.classed("selected", false);
       document.body.classList.remove("selected");
+      document.querySelector("#arrondissements").removeAttribute("class");
       active = d3.select(null);
 
       deps.selectAll("circle").remove();
@@ -150,11 +187,14 @@
     }
 
     function loadData(dept, scale) {
+      console.log(dept);
+      // const id = dept?.properties
+
       let accidents = caracts.filter(
         (c) => c.dep.padStart(2, "0") == dept.properties.CODE_DEPT
       );
 
-      deps
+      g_accidents
         .selectAll("circle")
         .data(accidents)
         .enter()

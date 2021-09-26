@@ -25,7 +25,8 @@
       const promises = [];
       promises.push(d3.json("data/departments.json"));
       promises.push(d3.csv("data/population.csv"));
-      promises.push(d3.csv("data/caracteristiques-2019.csv"));
+      promises.push(d3.csv("data/caracteristiques-2019-trimmed.csv"));
+      promises.push(d3.json("data/arrondissements_paris.geojson"));
     </script>
     <script src="map.js"></script>
     <script src="range.js"></script>

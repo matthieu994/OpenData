@@ -411,3 +411,39 @@ circle {
   user-select: none;
   pointer-events: none;
 }
+
+
+#topbar-menu {
+  position: absolute;
+  left: 0;
+  right: 0;
+  background-color: #222222;
+  padding: 10px;
+  z-index: 10000;
+}
+
+#topbar-list {
+  padding:0;
+  margin:0;
+  list-style-type:none;
+}
+
+#topbar-list li {
+  margin-left: 2px;
+  float: left;
+}
+
+#topbar-list li a {
+  display: block;
+  float: left;   
+  width: 100px;
+  color: #e0e0e0;
+  text-decoration: none;
+  font-weight: bold;
+  text-align: center;
+  padding: 5px;
+}
+
+#topbar-list li a:hover {
+  text-decoration: underline;
+}

@@ -25,7 +25,7 @@
 
   // Append the group that will contain our paths
   const deps = svg.append("g");
-  let g_accidents;
+  let g_accidents, g_arronds;
 
   /********************* Create deps and handle data *********************/
   Promise.all(promises).then(function (values) {
@@ -47,8 +47,8 @@
         clicked(e.target, d, id == 75);
       });
 
-    deps
-      .append("g")
+    g_arronds = deps.append("g");
+    g_arronds
       .attr("id", "arrondissements")
       .selectAll("path")
       .data(arrondissements.features)
@@ -133,12 +133,13 @@
 
     function clicked(target, d, isParis = false) {
       if (active.node()?.id === target?.id) {
-        console.log("reset");
         return reset();
       }
+
+      const isArrond = !d.properties.hasOwnProperty("CODE_DEPT");
       if (isParis) {
         document.querySelector("#arrondissements").classList.add("selected");
-        if (d?.properties?.CODE_DEPT) {
+        if (!isArrond) {
           document.querySelector("#arrondissements").classList.add("overview");
         } else {
           document.querySelector("#arrondissements").classList.remove("overview");
@@ -152,8 +153,14 @@
       document.body.classList.add("selected");
       active = d3.select(target).classed("selected", true);
 
-      var bounds = path.bounds(d),
-        dx = bounds[1][0] - bounds[0][0],
+      const bounds = path.bounds(d);
+      if (isArrond) {
+        bounds[0][0] -= 1;
+        bounds[0][1] -= 1;
+        bounds[1][1] += 1;
+        bounds[1][1] += 1;
+      }
+      let dx = bounds[1][0] - bounds[0][0],
         dy = bounds[1][1] - bounds[0][1],
         x = (bounds[0][0] + bounds[1][0]) / 2,
         y = (bounds[0][1] + bounds[1][1]) / 2,
@@ -166,7 +173,7 @@
         .style("stroke-width", 1.5 / scale + "px")
         .attr("transform", "translate(" + translate + ")scale(" + scale + ")");
 
-      if (!isParis) {
+      if (!isParis || isArrond) {
         loadData(d, scale);
       }
     }
@@ -187,14 +194,14 @@
     }
 
     function loadData(dept, scale) {
-      console.log(dept);
-      // const id = dept?.properties
+      const isDept = dept.properties.hasOwnProperty("CODE_DEPT");
+      const group = isDept ? g_accidents : g_arronds;
 
-      let accidents = caracts.filter(
-        (c) => c.dep.padStart(2, "0") == dept.properties.CODE_DEPT
+      let accidents = caracts.filter((c) =>
+        isDept ? c.dep == dept.properties.CODE_DEPT : c.com == dept.properties.c_arinsee
       );
 
-      g_accidents
+      group
         .selectAll("circle")
         .data(accidents)
         .enter()

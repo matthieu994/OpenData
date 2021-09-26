@@ -2,11 +2,10 @@
 import csv
 import pandas as pd
 
-
 # === REDUCTION DU FICHIER CARACTERISTIQUES-2019.CSV
 
 data = pd.read_csv('caracteristiques-2019-test.csv')
-  
+
 # drop function which is used in removing or deleting rows or columns from the CSV files
 data.drop('adr', inplace=True, axis=1)
 
@@ -15,10 +14,6 @@ data.drop('jour', inplace=True, axis=1)
 data.drop('mois', inplace=True, axis=1)
 
 data.drop('an', inplace=True, axis=1)
-
-data.drop('lum', inplace=True, axis=1)
-
-data.drop('com', inplace=True, axis=1)
 
 data.drop('agg', inplace=True, axis=1)
 
@@ -42,7 +37,7 @@ index_dep = i
 while i < len(first_line):
     if first_line[i] == "dep":
         index_dep = i
-    i+=1
+    i += 1
 
 nb_accidents = [0 for i in range(95)]
 
@@ -50,7 +45,7 @@ while True:
     line = accident_file.readline().strip().split(',')
     if (not line) or (line == ['']):
         break
-    
+
     num_dep = line[index_dep]
     if num_dep.isdigit():
         if int(num_dep) < 96:
@@ -61,7 +56,7 @@ accident_file.close()
 # === REDUCTION DU FICHIER POPULATION.CSV
 
 data = pd.read_csv('population.csv')
-  
+
 # drop function which is used in removing or deleting rows or columns from the CSV files
 data.drop('NB_ARRONDS', inplace=True, axis=1)
 
@@ -84,14 +79,13 @@ index_dep = i
 while i < len(first_line_split):
     if first_line_split[i] == "CODE_DEPT":
         index_dep = i
-    i+=1
+    i += 1
 
 output_pop_file.write(first_line + "," + "NB_ACCIDENTS\n")
 
-
 while True:
     line = input_pop_file.readline().strip()
-    
+
     if (not line) or (line == ['']):
         break
 

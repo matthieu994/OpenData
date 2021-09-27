@@ -3,7 +3,8 @@ let lowerSlider = document.querySelector("#lower"),
   lowerOutput = document.querySelector("output.left"),
   upperOutput = document.querySelector("output.right"),
   lowerVal = 0,
-  upperVal = 0;
+  upperVal = 0,
+  width = lowerOutput.clientWidth;
 updateRangeValues();
 
 upperSlider.oninput = function () {
@@ -31,12 +32,17 @@ lowerSlider.oninput = function () {
 };
 
 function updateRangeValues(low = lowerSlider.value, up = upperSlider.value) {
+  const max = lowerSlider.max;
   lowerVal = parseInt(low);
   upperVal = parseInt(up);
   lowerOutput.textContent = `${String(lowerVal).padStart(2, "0")}:00`;
   upperOutput.textContent = `${String(upperVal - 1).padStart(2, "0")}:59`;
-  lowerOutput.style.left = `calc(${(lowerVal / (parseInt(lowerSlider.max) + 1)) * 100}%)`;
-  upperOutput.style.left = `calc(${(upperVal / (parseInt(lowerSlider.max) + 1)) * 100}%)`;
+  lowerOutput.style.left = `calc(${(lowerVal / parseInt(max)) * 100}% - ${
+    width * (lowerVal / parseInt(max))
+  }px)`;
+  upperOutput.style.left = `calc(${(upperVal / parseInt(max)) * 100}% - ${
+    width * (upperVal / parseInt(max))
+  }px)`;
   lowerOutput.style.marginLeft = upperVal - lowerVal < 2 ? `-5px` : "";
   upperOutput.style.marginLeft = upperVal - lowerVal < 2 ? `5px` : "";
   setCircleOpacity();

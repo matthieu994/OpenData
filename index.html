@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
     <script src="https://d3js.org/d3.v7.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.5.1/dist/chart.min.js"></script>
+    <script src="data.js"></script>
     <link rel="stylesheet" href="style.css" />
     <link rel="stylesheet" href="colorbrewer.css" />
     <link rel="stylesheet" href="range.css" />
@@ -17,24 +19,30 @@
         <li><a href="rapport.html">Rapport</a></li>
       </ul>
     </nav>
-    <div id="france"></div>
-    <div id="filters">
-      <div class="multi-range">
-        <input type="range" min="0" max="24" value="0" id="lower" />
-        <output class="left">00:00</output>
-        <input type="range" min="0" max="24" value="24" id="upper" />
-        <output class="right">23:59</output>
+    <div id="france">
+      <div id="filters">
+        <div class="multi-range">
+          <input type="range" min="0" max="24" value="0" id="lower" />
+          <output class="left">00:00</output>
+          <input type="range" min="0" max="24" value="24" id="upper" />
+          <output class="right">23:59</output>
+        </div>
       </div>
+    </div>
+
+    <div id="charts">
+      <canvas id="distrib_hours"></canvas>
     </div>
 
     <script>
       const promises = [];
       promises.push(d3.json("data/departments.json"));
-      promises.push(d3.csv("data/population.csv"));
+      promises.push(d3.csv("data/pop_accidents.csv"));
       promises.push(d3.csv("data/caracteristiques-2019-trimmed.csv"));
       promises.push(d3.json("data/arrondissements_paris.geojson"));
     </script>
     <script src="map.js"></script>
     <script src="range.js"></script>
+    <script src="chart.js"></script>
   </body>
 </html>

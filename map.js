@@ -1,7 +1,7 @@
 /********************* Map Creation *********************/
 (() => {
-  const width = window.innerWidth,
-    height = window.innerHeight;
+  const width = window.innerWidth / 2,
+    height = window.innerHeight - 50;
   let active = d3.select(null);
 
   // Create a path object to manipulate geo data
@@ -9,7 +9,7 @@
   const projection = d3
     .geoConicConformal() // Lambert-93
     .center([2.454071, 46.279229]) // Center on France
-    .scale(4000)
+    .scale(window.innerWidth * 2.4)
     .translate([width / 2, height / 2]);
   const path = d3.geoPath().projection(projection); // Assign projection to path object
   // Create the DIV that will contain our map
@@ -17,10 +17,8 @@
     .select("#france")
     .append("svg")
     .attr("id", "svg")
-    .attr("width", width)
-    .attr("height", height)
     .attr("viewBox", "0 0 " + width + " " + height)
-    .attr("preserveAspectRatio", "xMinYMid")
+    .attr("preserveAspectRatio", "xMidYMid")
     .attr("class", "Blues");
 
   // Append the group that will contain our paths
@@ -67,7 +65,7 @@
 
     var quantile = d3
       .scaleQuantile()
-      .domain([0, d3.max(csv, (e) => +e.POP)])
+      .domain([0, d3.max(csv, (e) => parseInt(e.ACCIDENTS) / parseInt(e.POP))])
       .range(d3.range(9));
 
     var legend = svg
@@ -98,17 +96,22 @@
 
     csv.forEach(function (e, i) {
       d3.select("#d" + e.CODE_DEPT)
-        .attr("class", (d) => "departement q" + quantile(+e.POP) + "-9")
+        .attr("class", (d) => "departement q" + getColorQuantile(e) + "-9")
         .on("mouseover", function (d) {
           div.transition().duration(200).style("opacity", 0.65);
           div
             .html(
-              `<b>Région : </b> ${e.NOM_REGION}<br>
-              <b>Département : </b>
+              `<b>Département : </b>
               ${e.NOM_DEPT}
               <br>
               <b>Population : </b>
               ${e.POP}
+              <br>
+              <b>Accidents : </b>
+              ${e.ACCIDENTS}
+              <br>
+              <b>Accidents/100'000 habitants : </b>
+              ${Math.round((e.ACCIDENTS / e.POP) * 100000)}
               <br>`
             )
             .style("left", d.pageX + 30 + "px")
@@ -130,6 +133,10 @@
       .append("div")
       .attr("class", "tooltip")
       .style("opacity", 0);
+
+    function getColorQuantile(e) {
+      return quantile(parseInt(e.ACCIDENTS) / parseInt(e.POP));
+    }
 
     function clicked(target, d, isParis = false) {
       if (active.node()?.id === target?.id) {
@@ -173,12 +180,19 @@
         .style("stroke-width", 1.5 / scale + "px")
         .attr("transform", "translate(" + translate + ")scale(" + scale + ")");
 
+      if (!isArrond) {
+        updateDeptChart(d.properties.CODE_DEPT);
+      }
+
       if (!isParis || isArrond) {
-        loadData(d, scale);
+        setTimeout(() => {
+          loadData(d, scale);
+        }, 700);
       }
     }
 
     function reset() {
+      updateDeptChart(null);
       active.classed("selected", false);
       document.body.classList.remove("selected");
       document.querySelector("#arrondissements").removeAttribute("class");
@@ -196,10 +210,13 @@
     function loadData(dept, scale) {
       const isDept = dept.properties.hasOwnProperty("CODE_DEPT");
       const group = isDept ? g_accidents : g_arronds;
+      const code = isDept
+        ? !dept.properties.CODE_DEPT.match(/[A-Z]/gi)
+          ? parseInt(dept.properties.CODE_DEPT)
+          : dept.properties.CODE_DEPT
+        : dept.properties.c_arinsee;
 
-      let accidents = caracts.filter((c) =>
-        isDept ? c.dep == dept.properties.CODE_DEPT : c.com == dept.properties.c_arinsee
-      );
+      let accidents = caracts.filter((c) => (isDept ? c.dep == code : c.com == code));
 
       group
         .selectAll("circle")

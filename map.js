@@ -61,7 +61,7 @@
         clicked(e.target, d, true);
       });
 
-    g_accidents = deps.append("g");
+    g_accidents = deps.append("g").attr("id", "accidents");
 
     var quantile = d3
       .scaleQuantile()
@@ -147,12 +147,13 @@
 
       const isArrond = !d.properties.hasOwnProperty("CODE_DEPT");
       if (isParis) {
-        document.body.setAttribute("selected", "arrondissement");
         setScale(true);
         document.querySelector("#arrondissements").classList.add("selected");
         if (!isArrond) {
+          document.body.setAttribute("selected", "overview");
           document.querySelector("#arrondissements").classList.add("overview");
         } else {
+          document.body.setAttribute("selected", "arrondissement");
           document.querySelector("#arrondissements").classList.remove("overview");
         }
       } else {
@@ -186,10 +187,12 @@
         .style("stroke-width", 1.5 / scale + "px")
         .attr("transform", "translate(" + translate + ")scale(" + scale + ")");
 
+      // Update charts
       let code = d.properties.CODE_DEPT || d.properties.c_arinsee,
         name = d.properties.NOM_DEPT || d.properties.l_ar + " - Paris";
       updateDeptChart(code, name);
       updateGraviteChart(code, name);
+      updateVMAChart(code, name);
 
       if (!isParis || isArrond) {
         setTimeout(() => {
@@ -198,10 +201,14 @@
       }
     }
 
+    /** Reset everything */
     function reset() {
-      setScale(false);
+      // Reset charts
       updateDeptChart(null);
       updateGraviteChart(null);
+      updateVMAChart(null);
+
+      setScale(false);
       active.classed("selected", false);
       document.body.classList.remove("selected");
       document.body.removeAttribute("selected");
@@ -219,7 +226,6 @@
 
     function loadData(dept, scale) {
       const isDept = dept.properties.hasOwnProperty("CODE_DEPT");
-      const group = isDept ? g_accidents : g_arronds;
       const code = isDept
         ? !dept.properties.CODE_DEPT.match(/[A-Z]/gi)
           ? parseInt(dept.properties.CODE_DEPT)
@@ -228,7 +234,7 @@
 
       let accidents = caracts.filter((c) => (isDept ? c.dep == code : c.com == code));
 
-      group
+      g_accidents
         .selectAll("circle")
         .data(accidents)
         .enter()

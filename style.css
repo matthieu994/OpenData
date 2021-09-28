@@ -392,7 +392,8 @@ body.selected #arrondissements:not(.overview) .arrondissement:not(.selected) {
   display: initial;
 }
 
-.departement.selected {
+.departement.selected,
+.arrondissement.selected {
   fill: rgb(107, 174, 214) !important;
 }
 
@@ -481,8 +482,19 @@ circle {
 #legend {
   opacity: 1;
   transition: all 1s;
+  user-select: none;
+  touch-action: none;
+  pointer-events: none;
 }
 body.selected[selected="departement"] #legend {
-  opacity: 0;
+  opacity: 0.12;
   transition: all 0.3s;
+}
+body.selected[selected="arrondissement"] #legend {
+  opacity: 0.12;
+  transition: all 0.3s;
+}
+
+body:not(.selected) #accidents {
+  display: none;
 }

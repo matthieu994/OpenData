@@ -36,6 +36,7 @@
       </div>
       <div class="pie-container">
         <canvas id="gravite" height="500px"></canvas>
+		<canvas id="max_speed_pie_chart" height="500px"></canvas>
       </div>
     </div>
 
@@ -45,10 +46,12 @@
       promises.push(d3.csv("data/pop_accidents.csv"));
       promises.push(d3.csv("data/caracteristiques-2019-trimmed.csv"));
       promises.push(d3.json("data/arrondissements_paris.geojson"));
+	  promises.push(d3.csv("data/vmaData.csv"));
     </script>
     <script src="map.js"></script>
     <script src="range.js"></script>
     <script src="chart.js"></script>
     <script src="gravite.js"></script>
+	<script src="vmaPieChart.js"></script>
   </body>
 </html>

@@ -10,8 +10,8 @@
   const projection = d3
     .geoConicConformal() // Lambert-93
     .center([2.454071, 46.279229]) // Center on France
-    .scale(window.innerWidth * 2.4)
-    .translate([width / 2, height / 2]);
+    .scale(window.innerWidth * 2.3)
+    .translate([width / 2 - 25, height / 2 - 25]);
   const path = d3.geoPath().projection(projection); // Assign projection to path object
   // Create the DIV that will contain our map
   const svg = d3
@@ -297,7 +297,7 @@
         .range([0, 9 * 20]);
 
       legend_g
-        .attr("transform", "translate(95, 430)")
+        .attr("transform", "translate(50, 430)")
         .call(d3.axisLeft(legendScale).ticks(6));
     }
   });

@@ -62,9 +62,9 @@ function updateVMAChart(dept, dept_name) {
     vma_chart.options.plugins.title.text =
       "Accidents par vitesses maximales autorisées à " + dept_name;
   }
-  
+
   vma_chart.data.datasets[0].data = getDataForDepartement(dept);
-  
+
   vma_chart.update();
 }
 
@@ -72,10 +72,12 @@ function getDataForDepartement(dept) {
   if (dept === null) {
     return all_data_vma;
   } else {
+    if (!csv_file[dept - 1]) dept = 75;
     return [
-    csv_file[dept-1]["50kmh"],
-    csv_file[dept-1]["80-90kmh"],
-    csv_file[dept-1]["110kmh"],
-    csv_file[dept-1]["130kmh"]];
+      csv_file[dept - 1]["50kmh"],
+      csv_file[dept - 1]["80-90kmh"],
+      csv_file[dept - 1]["110kmh"],
+      csv_file[dept - 1]["130kmh"],
+    ];
   }
 }

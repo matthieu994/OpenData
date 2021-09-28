@@ -55,6 +55,7 @@ function updateGraviteChart(dept, dept_name) {
       "Comment se portent les accidentés après accident en FRANCE";
   } else {
     gravite_chart.data.datasets[0].data = distrib_dept_gravite[`${parseInt(dept)}`];
+    console.log(`${parseInt(dept)}`);
     gravite_chart.options.plugins.title.text =
       "Comment se portent les accidentés après accident à " + dept_name;
   }

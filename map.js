@@ -192,6 +192,7 @@
         name = d.properties.NOM_DEPT || d.properties.l_ar + " - Paris";
       updateDeptChart(code, name);
       updateGraviteChart(code, name);
+      updateVmaGraviteChart(code, name);
       updateVMAChart(code, name);
 
       if (!isParis || isArrond) {
@@ -206,6 +207,7 @@
       // Reset charts
       updateDeptChart(null);
       updateGraviteChart(null);
+      updateVmaGraviteChart(null);
       updateVMAChart(null);
 
       setScale(false);

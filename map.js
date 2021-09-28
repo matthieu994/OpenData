@@ -10,7 +10,7 @@
   const projection = d3
     .geoConicConformal() // Lambert-93
     .center([2.454071, 46.279229]) // Center on France
-    .scale(window.innerWidth * 2.3)
+    .scale(Math.max(window.innerHeight, window.innerWidth) * 2.3)
     .translate([width / 2 - 25, height / 2 - 25]);
   const path = d3.geoPath().projection(projection); // Assign projection to path object
   // Create the DIV that will contain our map
@@ -197,7 +197,7 @@
       if (!isParis || isArrond) {
         setTimeout(() => {
           loadData(d, scale);
-        }, 700);
+        }, 500);
       }
     }
 

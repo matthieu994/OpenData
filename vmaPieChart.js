@@ -37,7 +37,7 @@ function vmaChart(csv) {
     type: "pie",
     data: data,
     options: {
-      responsive: true,
+      responsive: false,
       plugins: {
         legend: {
           position: "top",

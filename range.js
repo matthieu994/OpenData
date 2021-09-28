@@ -43,8 +43,10 @@ function updateRangeValues(low = lowerSlider.value, up = upperSlider.value) {
   upperOutput.style.left = `calc(${(upperVal / parseInt(max)) * 100}% - ${
     width * (upperVal / parseInt(max))
   }px)`;
-  lowerOutput.style.marginLeft = upperVal - lowerVal < 2 ? `-5px` : "";
-  upperOutput.style.marginLeft = upperVal - lowerVal < 2 ? `5px` : "";
+  lowerOutput.style.marginLeft =
+    upperVal - lowerVal < 2 ? `-${6500 / lowerSlider.clientWidth}px` : "";
+  upperOutput.style.marginLeft =
+    upperVal - lowerVal < 2 ? `${6500 / lowerSlider.clientWidth}px` : "";
   setCircleOpacity();
 }
 

@@ -32,7 +32,7 @@ function graviteChart() {
     type: "pie",
     data,
     options: {
-      responsive: true,
+      responsive: false,
       plugins: {
         legend: {
           position: "top",

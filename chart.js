@@ -41,7 +41,6 @@ function overviewChart() {
 }
 
 function updateDeptChart(dept, dept_name) {
-  console.log(dept_name);
   if (dept === null) {
     hours_chart.data.datasets[0].data = distrib_hours;
     hours_chart.options.plugins.title.text =

@@ -57,7 +57,7 @@ function updateGraviteChart(dept, dept_name) {
     gravite_chart.data.datasets[0].data = distrib_dept_gravite[`${parseInt(dept)}`];
     console.log(`${parseInt(dept)}`);
     gravite_chart.options.plugins.title.text =
-      "Nombre d'accidents en fonction de l'heure à " + dept_name;
+      "Comment se portent les accidentés après accident à " + dept_name;
   }
   gravite_chart.update();
 }

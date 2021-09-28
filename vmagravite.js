@@ -1,5 +1,5 @@
 var vma_gravite_chart;
-function vmaGraviteChart(dept) {
+function vmaGraviteChart(dept, name) {
 	const DATA_COUNT = 4;
 	promises[4].then(function (values) {
 		var vma50 		= JSON.parse(values[dept]["50kmh"]);
@@ -51,7 +51,7 @@ function vmaGraviteChart(dept) {
 		  	  	plugins: {
 		  	  	  	title: {
 		  	  	  	  display: true,
-		  	  	  	  text: 'Gravité des accidents en fonction de la VMA'
+		  	  	  	  text: 'Gravité des accidents en fonction de la VMA à '+name
 		  	  	  	},
 		  	  	},
 		  	  	responsive: true,
@@ -72,9 +72,9 @@ function vmaGraviteChart(dept) {
 function updateVmaGraviteChart(dept, dept_name) {
   vma_gravite_chart.destroy();
   if (dept === null) {
-  	vmaGraviteChart(95);
+  	vmaGraviteChart(95, "FRANCE");
   } else {
-  	vmaGraviteChart(dept);
+  	vmaGraviteChart(dept, dept_name);
   }
 }
-vmaGraviteChart(95);
+vmaGraviteChart(95, "FRANCE");

@@ -10,8 +10,8 @@
   const projection = d3
     .geoConicConformal() // Lambert-93
     .center([2.454071, 46.279229]) // Center on France
-    .scale(window.innerWidth * 2.4)
-    .translate([width / 2, height / 2]);
+    .scale(window.innerWidth * 2.3)
+    .translate([width / 2 - 25, height / 2 - 25]);
   const path = d3.geoPath().projection(projection); // Assign projection to path object
   // Create the DIV that will contain our map
   const svg = d3
@@ -61,7 +61,7 @@
         clicked(e.target, d, true);
       });
 
-    g_accidents = deps.append("g");
+    g_accidents = deps.append("g").attr("id", "accidents");
 
     var quantile = d3
       .scaleQuantile()
@@ -147,12 +147,13 @@
 
       const isArrond = !d.properties.hasOwnProperty("CODE_DEPT");
       if (isParis) {
-        document.body.setAttribute("selected", "arrondissement");
         setScale(true);
         document.querySelector("#arrondissements").classList.add("selected");
         if (!isArrond) {
+          document.body.setAttribute("selected", "overview");
           document.querySelector("#arrondissements").classList.add("overview");
         } else {
+          document.body.setAttribute("selected", "arrondissement");
           document.querySelector("#arrondissements").classList.remove("overview");
         }
       } else {
@@ -186,11 +187,13 @@
         .style("stroke-width", 1.5 / scale + "px")
         .attr("transform", "translate(" + translate + ")scale(" + scale + ")");
 
+      // Update charts
       let code = d.properties.CODE_DEPT || d.properties.c_arinsee,
         name = d.properties.NOM_DEPT || d.properties.l_ar + " - Paris";
       updateDeptChart(code, name);
       updateGraviteChart(code, name);
       updateVmaGraviteChart(code, name);
+      updateVMAChart(code, name);
 
       if (!isParis || isArrond) {
         setTimeout(() => {
@@ -199,11 +202,15 @@
       }
     }
 
+    /** Reset everything */
     function reset() {
-      setScale(false);
+      // Reset charts
       updateDeptChart(null);
       updateGraviteChart(null);
       updateVmaGraviteChart(null);
+      updateVMAChart(null);
+
+      setScale(false);
       active.classed("selected", false);
       document.body.classList.remove("selected");
       document.body.removeAttribute("selected");
@@ -221,7 +228,6 @@
 
     function loadData(dept, scale) {
       const isDept = dept.properties.hasOwnProperty("CODE_DEPT");
-      const group = isDept ? g_accidents : g_arronds;
       const code = isDept
         ? !dept.properties.CODE_DEPT.match(/[A-Z]/gi)
           ? parseInt(dept.properties.CODE_DEPT)
@@ -230,7 +236,7 @@
 
       let accidents = caracts.filter((c) => (isDept ? c.dep == code : c.com == code));
 
-      group
+      g_accidents
         .selectAll("circle")
         .data(accidents)
         .enter()
@@ -293,7 +299,7 @@
         .range([0, 9 * 20]);
 
       legend_g
-        .attr("transform", "translate(95, 430)")
+        .attr("transform", "translate(50, 430)")
         .call(d3.axisLeft(legendScale).ticks(6));
     }
   });

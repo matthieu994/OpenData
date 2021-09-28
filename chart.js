@@ -13,7 +13,7 @@ function overviewChart() {
       {
         label: `Accidents en 1 heure`,
         data: distrib_hours,
-        borderColor: "#444",
+        borderColor: "#3b4e6a",
         fill: false,
         stepped: false,
       },

@@ -39,7 +39,7 @@ function graviteChart() {
         },
         title: {
           display: true,
-          text: "Comment se portent les accidentés après accident en FRANCE",
+          text: "Gravité de blessure de l'usager en FRANCE",
         },
       },
     },
@@ -52,11 +52,11 @@ function updateGraviteChart(dept, dept_name) {
   if (dept === null) {
     gravite_chart.data.datasets[0].data = data_accidents;
     gravite_chart.options.plugins.title.text =
-      "Comment se portent les accidentés après accident en FRANCE";
+      "Gravité de blessure des usagers en FRANCE";
   } else {
     gravite_chart.data.datasets[0].data = distrib_dept_gravite[`${parseInt(dept)}`];
     gravite_chart.options.plugins.title.text =
-      "Comment se portent les accidentés après accident à " + dept_name;
+      "Gravité de blessure des usagers à " + dept_name;
   }
   gravite_chart.update();
 }

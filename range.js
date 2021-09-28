@@ -54,7 +54,7 @@ function setCircleOpacity() {
   document.querySelectorAll("circle").forEach((c) => {
     const hours = parseInt(c.__data__.hrmn.split(":")[0]);
     if (hours < lowerVal || hours >= upperVal) {
-      c.style.opacity = 0.2;
+      c.style.opacity = 0.13;
     } else {
       c.style.opacity = 1;
     }

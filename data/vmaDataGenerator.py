@@ -15,7 +15,7 @@ def getAccidentIdsWithinDepartement(no_departement):
 				
 			current_row_departement_no = row[departement_no_column]
 			if (current_row_departement_no == no_departement):
-				accident_ids_within_departement.append(row[0])
+				accident_ids_within_departement.append(row[accident_id_column])
 				
 	return accident_ids_within_departement;
 
@@ -63,7 +63,7 @@ def generateVmaData():
 		filewriter.writerow(['Departement', '50kmh', '80-90kmh', '110kmh', '130kmh'])
 		
 		whole_france_data = { "50" : 0, "80to90" : 0, "110" : 0, "130" : 0 }
-		for no_departement in range(1, 94):
+		for no_departement in range(1, 96):
 			departement_data = generateVmaDataForDepartement(str(no_departement))
 			whole_france_data = sum_data(departement_data, whole_france_data)
 			filewriter.writerow(departement_data)

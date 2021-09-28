@@ -1,11 +1,12 @@
-let vma_chart, all_data_vma;
+let vma_chart, all_data_vma, csv_file;
 
 function vmaChart(csv) {
+  csv_file = csv;
   all_data_vma = [
-    csv[93]["50kmh"],
-    csv[93]["80-90kmh"],
-    csv[93]["110kmh"],
-    csv[93]["130kmh"],
+    csv[95]["50kmh"],
+    csv[95]["80-90kmh"],
+    csv[95]["110kmh"],
+    csv[95]["130kmh"],
   ];
   console.log(all_data_vma);
 
@@ -55,13 +56,26 @@ d3.csv("data/vmaData.csv").then((data) => vmaChart(data));
 
 function updateVMAChart(dept, dept_name) {
   if (dept === null) {
-    vma_chart.data.datasets[0].data = all_data_vma;
     vma_chart.options.plugins.title.text =
       "Accidents par vitesses maximales autorisées en FRANCE";
   } else {
-    vma_chart.data.datasets[0].data = [];
     vma_chart.options.plugins.title.text =
       "Accidents par vitesses maximales autorisées à " + dept_name;
   }
+  
+  vma_chart.data.datasets[0].data = getDataForDepartement(dept);
+  
   vma_chart.update();
+}
+
+function getDataForDepartement(dept) {
+  if (dept === null) {
+    return all_data_vma;
+  } else {
+    return [
+    csv_file[dept-1]["50kmh"],
+    csv_file[dept-1]["80-90kmh"],
+    csv_file[dept-1]["110kmh"],
+    csv_file[dept-1]["130kmh"]];
+  }
 }

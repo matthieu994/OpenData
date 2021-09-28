@@ -23,17 +23,23 @@ fs.readFile("./caracteristiques-2019-test.csv", "utf8", (err, data) => {
       delimiter: ",",
     });
 
+    // For each dept, slice the accidents in a 24H array
     parser.on("readable", function () {
       let record = parser.read();
-      let dept;
-      while ((record = parser.read())) {
-        dept = record[6];
 
+      const handle = (dept) => {
         if (!output[dept]) output[dept] = new Array(24).fill(0);
         if (!sum_accidents[dept]) sum_accidents[dept] = 0;
 
         output[dept][parseInt(record[4].substr(0, 2))]++;
         sum_accidents[dept]++;
+      };
+
+      while ((record = parser.read())) {
+        handle(record[6]);
+        if (record[6] == 75) {
+          handle(record[7]);
+        }
       }
 
       fs.writeFile(
@@ -42,13 +48,16 @@ fs.readFile("./caracteristiques-2019-test.csv", "utf8", (err, data) => {
         (err, _) => {
           if (err) console.log(err);
 
+          // For each dept, append the sum of accidents
           parser_pop.on("readable", function () {
             let record = parser_pop.read(),
               dept;
             record.push("ACCIDENTS");
             output_pop += record.join(",");
+
             while ((record = parser_pop.read())) {
               dept = !record[0].match(/[A-Z]/gi) ? parseInt(record[0]) : record[0];
+
               record.push(sum_accidents[dept]);
               output_pop += "\n" + record.join(",");
             }

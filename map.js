@@ -3,6 +3,7 @@
   const width = window.innerWidth / 2,
     height = window.innerHeight - 50;
   let active = d3.select(null);
+  let arrondScale = true;
 
   // Create a path object to manipulate geo data
   // Define projection property
@@ -52,11 +53,10 @@
       .data(arrondissements.features)
       .enter()
       .append("path")
-      .attr("id", (d) => "a" + d.properties.c_ar)
-      .attr("class", "arrondissement")
+      .attr("id", (d) => "d" + d.properties.c_arinsee)
       .attr("d", path)
       .on("click", (e) => {
-        const id = e.target.id.substr(1);
+        const id = e.target.id.substr(4);
         const d = arrondissements.features.find((f) => f.properties.c_ar == id);
         clicked(e.target, d, true);
       });
@@ -65,13 +65,17 @@
 
     var quantile = d3
       .scaleQuantile()
-      .domain([0, d3.max(csv, (e) => parseInt(e.ACCIDENTS) / parseInt(e.POP))])
+      .domain([
+        0,
+        d3.max(
+          csv.filter((d) => !d.NOM_DEPT.includes("Paris ")),
+          (e) => parseInt(e.ACCIDENTS) / parseInt(e.POP)
+        ),
+      ])
       .range(d3.range(9));
 
-    var legend = svg
-      .append("g")
-      .attr("transform", "translate(100, 430)")
-      .attr("id", "legend");
+    const legend_g = svg.append("g").attr("id", "legend");
+    var legend = legend_g.attr("transform", "translate(100, 430)");
 
     legend
       .selectAll(".colorbar")
@@ -84,19 +88,17 @@
       .attr("x", "0px")
       .attr("class", (d) => "q" + d + "-9");
 
-    var legendScale = d3
-      .scaleLinear()
-      .domain([0, d3.max(csv, (e) => +e.POP)])
-      .range([0, 9 * 20]);
-
-    svg
-      .append("g")
-      .attr("transform", "translate(95, 430)")
-      .call(d3.axisLeft(legendScale).ticks(7));
+    setScale(false);
 
     csv.forEach(function (e, i) {
       d3.select("#d" + e.CODE_DEPT)
-        .attr("class", (d) => "departement q" + getColorQuantile(e) + "-9")
+        .attr(
+          "class",
+          (d) =>
+            `${
+              e.NOM_DEPT.includes("Paris ") ? "arrondissement" : "departement"
+            } q${getColorQuantile(e)}-9`
+        )
         .on("mouseover", function (d) {
           div.transition().duration(200).style("opacity", 0.65);
           div
@@ -111,7 +113,7 @@
               ${e.ACCIDENTS}
               <br>
               <b>Accidents/100'000 habitants : </b>
-              ${Math.round((e.ACCIDENTS / e.POP) * 100000)}
+              ${Math.round((parseInt(e.ACCIDENTS) / parseInt(e.POP)) * 100000)}
               <br>`
             )
             .style("left", d.pageX + 30 + "px")
@@ -145,6 +147,8 @@
 
       const isArrond = !d.properties.hasOwnProperty("CODE_DEPT");
       if (isParis) {
+        document.body.setAttribute("selected", "arrondissement");
+        setScale(true);
         document.querySelector("#arrondissements").classList.add("selected");
         if (!isArrond) {
           document.querySelector("#arrondissements").classList.add("overview");
@@ -152,6 +156,8 @@
           document.querySelector("#arrondissements").classList.remove("overview");
         }
       } else {
+        document.body.setAttribute("selected", "departement");
+        setScale(false);
         document.querySelector("#arrondissements").classList.remove("selected");
       }
 
@@ -180,9 +186,10 @@
         .style("stroke-width", 1.5 / scale + "px")
         .attr("transform", "translate(" + translate + ")scale(" + scale + ")");
 
-      if (!isArrond) {
-        updateDeptChart(d.properties.CODE_DEPT);
-      }
+      updateDeptChart(
+        d.properties.CODE_DEPT || d.properties.c_arinsee,
+        d.properties.NOM_DEPT || d.properties.l_ar + " - Paris"
+      );
 
       if (!isParis || isArrond) {
         setTimeout(() => {
@@ -192,9 +199,11 @@
     }
 
     function reset() {
+      setScale(false);
       updateDeptChart(null);
       active.classed("selected", false);
       document.body.classList.remove("selected");
+      document.body.removeAttribute("selected");
       document.querySelector("#arrondissements").removeAttribute("class");
       active = d3.select(null);
 
@@ -262,6 +271,27 @@
       });
 
       setCircleOpacity();
+    }
+
+    function setScale(isArrond) {
+      if (arrondScale == isArrond) return;
+      else arrondScale = isArrond;
+
+      const coeff = isArrond ? 27000 : 20000;
+
+      var legendScale = d3
+        .scaleLinear()
+        .domain([
+          0,
+          d3.max(csv, (e) =>
+            Math.round((parseInt(e.ACCIDENTS) / parseInt(e.POP)) * coeff)
+          ),
+        ])
+        .range([0, 9 * 20]);
+
+      legend_g
+        .attr("transform", "translate(95, 430)")
+        .call(d3.axisLeft(legendScale).ticks(6));
     }
   });
 })();

@@ -349,7 +349,7 @@ body > footer {
 .departement,
 .arrondissement {
   cursor: pointer;
-  stroke: rgb(206, 206, 206);
+  stroke: rgb(255, 255, 255);
   stroke-width: 0.1px;
   transform-origin: center;
   transform-style: preserve-3d;
@@ -366,6 +366,12 @@ body > footer {
 
 .arrondissement:hover {
   stroke-width: 0.01px;
+}
+#arrondissements.overview .arrondissement:hover {
+  stroke-width: 0.05px;
+}
+body.selected #arrondissements:not(.overview) .arrondissement:not(.selected) {
+  filter: blur(0.01px) !important;
 }
 
 body.selected .departement:not(.selected),
@@ -384,6 +390,10 @@ body.selected #arrondissements:not(.overview) .arrondissement:not(.selected) {
 }
 #arrondissements.selected {
   display: initial;
+}
+
+.departement.selected {
+  fill: rgb(107, 174, 214) !important;
 }
 
 div.tooltip {
@@ -405,14 +415,8 @@ svg {
 }
 
 circle {
-  stroke: rgb(28, 37, 75);
-  stroke-width: 0.1px;
   user-select: none;
   pointer-events: none;
-}
-#arrondissements circle {
-  stroke: rgb(28, 37, 75);
-  stroke-width: 0.003px;
 }
 
 #topbar-menu {
@@ -455,4 +459,13 @@ circle {
 #charts {
   background-color: #8ea1be;
   width: 50%;
+}
+
+#legend {
+  opacity: 1;
+  transition: all 1s;
+}
+body.selected[selected="departement"] #legend {
+  opacity: 0;
+  transition: all 0.3s;
 }

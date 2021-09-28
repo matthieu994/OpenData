@@ -33,18 +33,23 @@ function overviewChart() {
       plugins: {
         title: {
           display: true,
-          text: "Nombre d'accidents en fonction de l'heure",
+          text: "Nombre d'accidents en fonction de l'heure en FRANCE",
         },
       },
     },
   });
 }
 
-function updateDeptChart(dept) {
+function updateDeptChart(dept, dept_name) {
+  console.log(dept_name);
   if (dept === null) {
     hours_chart.data.datasets[0].data = distrib_hours;
+    hours_chart.options.plugins.title.text =
+      "Nombre d'accidents en fonction de l'heure en FRANCE";
   } else {
     hours_chart.data.datasets[0].data = distrib_hours_depts[`${parseInt(dept)}`];
+    hours_chart.options.plugins.title.text =
+      "Nombre d'accidents en fonction de l'heure à : " + dept_name;
   }
   hours_chart.update();
 }

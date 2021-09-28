@@ -72,7 +72,6 @@ function updateVmaGraviteChart(dept, dept_name) {
   }
 
   let [indemnes, deces, graves, legers] = getVMADataForDept(code);
-  console.log(vma_gravite_chart.data.datasets);
   vma_gravite_chart.data.datasets[0].data = indemnes;
   vma_gravite_chart.data.datasets[1].data = legers;
   vma_gravite_chart.data.datasets[2].data = graves;
@@ -81,6 +80,8 @@ function updateVmaGraviteChart(dept, dept_name) {
 }
 
 function getVMADataForDept(dept) {
+  if (!all_values_vma_bar[dept]) dept = 75;
+
   var vma50 = JSON.parse(all_values_vma_bar[dept]["50kmh"]);
   var vma80to90 = JSON.parse(all_values_vma_bar[dept]["80to90kmh"]);
   var vma110 = JSON.parse(all_values_vma_bar[dept]["110kmh"]);

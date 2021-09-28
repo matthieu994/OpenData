@@ -8,7 +8,6 @@ function vmaChart(csv) {
     csv[95]["110kmh"],
     csv[95]["130kmh"],
   ];
-  console.log(all_data_vma);
 
   const DATA_COUNT = 4;
 

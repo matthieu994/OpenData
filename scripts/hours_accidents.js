@@ -13,7 +13,7 @@ fs.readFile("./caracteristiques-2019-test.csv", "utf8", (err, data) => {
       return;
     }
 
-    const output = {};
+    const output_hours = {};
     const parser = parse(data, {
       delimiter: ",",
     });
@@ -28,10 +28,10 @@ fs.readFile("./caracteristiques-2019-test.csv", "utf8", (err, data) => {
       let record = parser.read();
 
       const handle = (dept) => {
-        if (!output[dept]) output[dept] = new Array(24).fill(0);
+        if (!output_hours[dept]) output_hours[dept] = new Array(24).fill(0);
         if (!sum_accidents[dept]) sum_accidents[dept] = 0;
 
-        output[dept][parseInt(record[4].substr(0, 2))]++;
+        output_hours[dept][parseInt(record[4].substr(0, 2))]++;
         sum_accidents[dept]++;
       };
 
@@ -44,7 +44,7 @@ fs.readFile("./caracteristiques-2019-test.csv", "utf8", (err, data) => {
 
       fs.writeFile(
         "../data/distrib_hours_accidents_dept.json",
-        JSON.stringify(output),
+        JSON.stringify(output_hours),
         (err, _) => {
           if (err) console.log(err);
 

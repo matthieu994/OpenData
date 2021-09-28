@@ -186,10 +186,10 @@
         .style("stroke-width", 1.5 / scale + "px")
         .attr("transform", "translate(" + translate + ")scale(" + scale + ")");
 
-      updateDeptChart(
-        d.properties.CODE_DEPT || d.properties.c_arinsee,
-        d.properties.NOM_DEPT || d.properties.l_ar + " - Paris"
-      );
+      let code = d.properties.CODE_DEPT || d.properties.c_arinsee,
+        name = d.properties.NOM_DEPT || d.properties.l_ar + " - Paris";
+      updateDeptChart(code, name);
+      updateGraviteChart(code, name);
 
       if (!isParis || isArrond) {
         setTimeout(() => {
@@ -201,6 +201,7 @@
     function reset() {
       setScale(false);
       updateDeptChart(null);
+      updateGraviteChart(null);
       active.classed("selected", false);
       document.body.classList.remove("selected");
       document.body.removeAttribute("selected");

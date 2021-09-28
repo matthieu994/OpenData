@@ -1,5 +1,5 @@
 let hours_chart;
-let distrib_hours = [
+const distrib_hours = [
   1132, 897, 845, 617, 654, 950, 1303, 2576, 3485, 3045, 2698, 2860, 3062, 2945, 3193,
   3462, 4221, 5089, 4843, 3676, 2609, 1891, 1470, 1317,
 ];
@@ -48,7 +48,7 @@ function updateDeptChart(dept, dept_name) {
   } else {
     hours_chart.data.datasets[0].data = distrib_hours_depts[`${parseInt(dept)}`];
     hours_chart.options.plugins.title.text =
-      "Nombre d'accidents en fonction de l'heure à : " + dept_name;
+      "Nombre d'accidents en fonction de l'heure à " + dept_name;
   }
   hours_chart.update();
 }

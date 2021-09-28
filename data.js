@@ -339,3 +339,4 @@ const distrib_hours_depts = {
     5, 3, 4, 4, 3, 8, 4, 14, 12, 14, 21, 13, 14, 15, 24, 15, 13, 28, 16, 20, 10, 7, 6, 4,
   ],
 };
+const distrib_dept_gravite = {};

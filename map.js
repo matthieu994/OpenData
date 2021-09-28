@@ -190,6 +190,7 @@
         name = d.properties.NOM_DEPT || d.properties.l_ar + " - Paris";
       updateDeptChart(code, name);
       updateGraviteChart(code, name);
+      updateVmaGraviteChart(code, name);
 
       if (!isParis || isArrond) {
         setTimeout(() => {
@@ -202,6 +203,7 @@
       setScale(false);
       updateDeptChart(null);
       updateGraviteChart(null);
+      updateVmaGraviteChart(null);
       active.classed("selected", false);
       document.body.classList.remove("selected");
       document.body.removeAttribute("selected");

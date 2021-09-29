@@ -49,7 +49,7 @@ function securiteGraviteChart(values) {
   secuGraviteChart(values);
 }
 d3.json(
-  "https://raw.githubusercontent.com/matthieu994/OpenData/master/data/securityequipements.json"
+  "https://raw.githubusercontent.com/matthieu994/OpenData/master/data/securityEquipements.json"
 ).then((data) => securiteGraviteChart(data));
 
 function updateSecuriteGraviteChart(dept, dept_name, vehicle) {

@@ -43,7 +43,7 @@ function vmaChart(csv) {
         },
         title: {
           display: true,
-          text: "Accidents par vitesses maximales autorisées en FRANCE",
+          text: "Accidents par vitesse maximale autorisée en FRANCE",
         },
       },
     },
@@ -51,15 +51,17 @@ function vmaChart(csv) {
 
   vma_chart = new Chart(document.getElementById("max_speed_pie_chart"), config);
 }
-d3.csv("data/vmaData.csv").then((data) => vmaChart(data));
+d3.csv(
+  "https://raw.githubusercontent.com/matthieu994/OpenData/master/data/vmaData.csv"
+).then((data) => vmaChart(data));
 
 function updateVMAChart(dept, dept_name) {
   if (dept === null) {
     vma_chart.options.plugins.title.text =
-      "Accidents par vitesses maximales autorisées en FRANCE";
+      "Accidents par vitesse maximale autorisée en FRANCE";
   } else {
     vma_chart.options.plugins.title.text =
-      "Accidents par vitesses maximales autorisées à " + dept_name;
+      "Accidents par vitesse maximale autorisée à " + dept_name;
   }
 
   vma_chart.data.datasets[0].data = getDataForDepartement(dept);

@@ -57,7 +57,9 @@ function vmaGraviteChart(values) {
 
   vma_gravite_chart = new Chart(document.getElementById("vmagravite"), config);
 }
-d3.csv("data/vmaGraviteData.csv").then((data) => vmaGraviteChart(data));
+d3.csv(
+  "https://raw.githubusercontent.com/matthieu994/OpenData/master/data/vmaGraviteData.csv"
+).then((data) => vmaGraviteChart(data));
 
 function updateVmaGraviteChart(dept, dept_name) {
   let code = parseInt(dept);

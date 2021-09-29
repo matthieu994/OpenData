@@ -5,8 +5,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <script src="d3.v7.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@3.5.1/dist/chart.min.js"></script>
+    <!-- For GreenIT :)) -->
+    <link rel="stylesheet" type="text/css" href="style.css" media="print" />
+    <!-- Data used in the different charts -->
     <script src="data.js"></script>
     <link rel="stylesheet" href="style.css" />
     <link rel="stylesheet" href="colorbrewer.css" />
@@ -37,6 +40,8 @@
       <div class="pie-container">
         <canvas id="gravite" height="500px"></canvas>
         <canvas id="max_speed_pie_chart" height="500px"></canvas>
+      </div>
+      <div class="pie-container">
         <canvas id="vmagravite"></canvas>
         <div>
           <select id="selectVehicule">
@@ -48,14 +53,33 @@
         </div>
         <canvas id="securite_gravite"></canvas>
       </div>
+      <div class="pie-container">
+        <canvas id="secugravite"></canvas>
+      </div>
     </div>
     <script>
       const promises = [];
-      promises.push(d3.json("data/departments.json"));
-      promises.push(d3.csv("data/pop_accidents.csv"));
-      promises.push(d3.csv("data/caracteristiques-2019-trimmed.csv"));
-      promises.push(d3.json("data/arrondissements_paris.geojson"));
-      promises.push(d3.json("data/securityEquipaments.json"));
+      promises.push(
+        d3.json(
+          "https://raw.githubusercontent.com/matthieu994/OpenData/master/data/departments.json"
+        )
+      );
+      promises.push(
+        d3.csv(
+          "https://raw.githubusercontent.com/matthieu994/OpenData/master/data/pop_accidents.csv"
+        )
+      );
+      promises.push(
+        d3.csv(
+          "https://raw.githubusercontent.com/matthieu994/OpenData/master/data/caracteristiques-2019-trimmed.csv"
+        )
+      );
+      promises.push(
+        d3.json(
+          "https://raw.githubusercontent.com/matthieu994/OpenData/master/data/arrondissements_paris.geojson"
+        )
+      );
+      promises.push(d3.json("https://raw.githubusercontent.com/matthieu994/OpenData/master/data/securityEquipaments.json"));
     </script>
     <script src="map.js"></script>
     <script src="range.js"></script>
@@ -64,5 +88,6 @@
     <script src="vmagravite.js"></script>
     <script src="vmaPieChart.js"></script>
     <script src="equipamentSecurite.js"></script>
+    <script src="secugravite.js"></script>
   </body>
 </html>

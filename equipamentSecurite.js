@@ -56,7 +56,7 @@ d3.json(
 ).then((data) => securiteGraviteChart(data));
 
 function updateSecuriteGraviteChart(dept, dept_name, vehicle) {
-  let code = dept ? parseInt(dept) : securite_gravite_dept;
+  let code = dept ? dept : securite_gravite_dept;
 
   if (dept && dept_name) {
     if (dept === null) {

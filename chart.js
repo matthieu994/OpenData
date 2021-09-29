@@ -46,7 +46,7 @@ function updateDeptChart(dept, dept_name) {
     hours_chart.options.plugins.title.text =
       "Nombre d'accidents en fonction de l'heure en FRANCE";
   } else {
-    hours_chart.data.datasets[0].data = distrib_hours_depts[`${parseInt(dept)}`];
+    hours_chart.data.datasets[0].data = distrib_hours_depts[`${dept}`];
     hours_chart.options.plugins.title.text =
       "Nombre d'accidents en fonction de l'heure à " + dept_name;
   }

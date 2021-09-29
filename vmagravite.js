@@ -62,7 +62,7 @@ d3.csv(
 ).then((data) => vmaGraviteChart(data));
 
 function updateVmaGraviteChart(dept, dept_name) {
-  let code = parseInt(dept);
+  let code = dept;
 
   if (dept === null) {
     code = 95;

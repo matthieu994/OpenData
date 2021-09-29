@@ -233,3 +233,21 @@ body:not(.selected) #accidents {
     transform: scale(1.5);
   }
 }
+
+
+
+/* ***************** RAPPORT ****************** */
+
+#rapport-body {
+  overflow: hidden;
+}
+
+#rapport-container {
+  width: 100%;
+  height: 100%;
+}
+
+#rapport {
+  width: 100%;
+  height: 100%;
+}

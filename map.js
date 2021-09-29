@@ -5,7 +5,6 @@
   let active = d3.select(null);
   let arrondScale = true;
 
-  // Create a path object to manipulate geo data
   // Define projection property
   const projection = d3
     .geoConicConformal() // Lambert-93
@@ -74,9 +73,9 @@
       ])
       .range(d3.range(9));
 
+    // Create legend bar
     const legend_g = svg.append("g").attr("id", "legend");
-    var legend = legend_g.attr("transform", "translate(100, 430)");
-
+    const legend = legend_g.attr("transform", "translate(100, 430)");
     legend
       .selectAll(".colorbar")
       .data(d3.range(9))
@@ -87,9 +86,9 @@
       .attr("width", "20px")
       .attr("x", "0px")
       .attr("class", (d) => "q" + d + "-9");
-
     setScale(false);
 
+    // Init tooltip for each department
     csv.forEach(function (e, i) {
       d3.select("#d" + e.CODE_DEPT)
         .attr(
@@ -125,10 +124,6 @@
         });
     });
 
-    // Refresh colors on combo selection
-    d3.select("select").on("change", function () {
-      d3.selectAll("svg").attr("class", this.value);
-    });
     // Append a DIV for the tooltip
     var div = d3
       .select("body")
@@ -230,6 +225,7 @@
         .attr("transform", "");
     }
 
+    // Load accidents circles on click
     function loadData(dept, scale) {
       const isDept = dept.properties.hasOwnProperty("CODE_DEPT");
       const code = isDept
@@ -245,39 +241,13 @@
         .data(accidents)
         .enter()
         .append("circle")
-        .attr("r", 5 / scale)
+        .attr("r", 4 / scale)
         .attr("transform", function (d) {
           return "translate(" + projection([d.long, d.lat]) + ")";
         });
 
       const domain = [0, d3.max(accidents, (e) => +e.lum)];
       var quantile = d3.scaleQuantile().domain(domain).range(d3.range(5));
-
-      // var legend = svg
-      //   .append("g")
-      //   .attr("transform", "translate(100, 430)")
-      //   .attr("id", "legend");
-
-      // legend
-      //   .selectAll(".colorbar")
-      //   .data(d3.range(5))
-      //   .enter()
-      //   .append("svg:rect")
-      //   .attr("y", (d) => d * 20 + "px")
-      //   .attr("height", "20px")
-      //   .attr("width", "20px")
-      //   .attr("x", "0px")
-      //   .attr("class", (d) => "a" + d + "-9");
-
-      // var legendScale = d3
-      //   .scaleLinear()
-      //   .domain(domain)
-      //   .range([0, 5 * 20]);
-
-      // svg
-      //   .append("g")
-      //   .attr("transform", "translate(95, 430)")
-      //   .call(d3.axisRight(legendScale).ticks(5));
 
       document.querySelectorAll("circle").forEach((el) => {
         el.classList.add("a" + (quantile(el.__data__.lum) - 1) + "-5");
@@ -308,3 +278,14 @@
     }
   });
 })();
+
+function setCircleOpacity() {
+  document.querySelectorAll("circle").forEach((c) => {
+    const hours = parseInt(c.__data__.hrmn.split(":")[0]);
+    if (hours < lowerVal || hours >= upperVal) {
+      c.style.opacity = 0.13;
+    } else {
+      c.style.opacity = 1;
+    }
+  });
+}

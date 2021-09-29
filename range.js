@@ -49,14 +49,3 @@ function updateRangeValues(low = lowerSlider.value, up = upperSlider.value) {
     upperVal - lowerVal < 2 ? `${6500 / lowerSlider.clientWidth}px` : "";
   setCircleOpacity();
 }
-
-function setCircleOpacity() {
-  document.querySelectorAll("circle").forEach((c) => {
-    const hours = parseInt(c.__data__.hrmn.split(":")[0]);
-    if (hours < lowerVal || hours >= upperVal) {
-      c.style.opacity = 0.13;
-    } else {
-      c.style.opacity = 1;
-    }
-  });
-}

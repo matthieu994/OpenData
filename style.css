@@ -195,6 +195,17 @@ circle {
   position: relative;
   width: 100%;
   text-align: center;
+  margin-bottom: 40px;
+  color: rgb(102, 102, 102);
+  font-weight: bold;
+  font-size: 14px;
+}
+
+.doughnut-container > canvas {
+  width: 70%;
+  text-align: center;
+  display: inline !important;
+
 }
 
 #legend {

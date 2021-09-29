@@ -24,6 +24,11 @@
       </ul>
     </nav>
     <div id="france">
+      <div id="legende_lum">
+        <div class="a0-5"><label>Plein jour</label><i></i></div>
+        <div class="a1-5"><label>Faible luminosité</label><i></i></div>
+        <div class="a2-5"><label>Nuit</label><i></i></div>
+      </div>
       <div id="filters">
         <div class="multi-range">
           <input type="range" min="0" max="24" value="0" id="lower" />
@@ -61,6 +66,7 @@
         <canvas id="secugravite"></canvas>
       </div>
     </div>
+
     <script>
       const promises = [];
       promises.push(

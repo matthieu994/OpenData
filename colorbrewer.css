@@ -128,15 +128,30 @@
 .a0-5 {
   fill: #f7f7f7;
 }
+div.a0-5 > i {
+  background-color: #f7f7f7;
+}
 .a1-5 {
-  fill: #cccccc;
+  fill: #969696;
+}
+div.a1-5 > i {
+  background-color: #969696;
 }
 .a2-5 {
   fill: #252525;
 }
+div.a2-5 > i {
+  background-color: #252525;
+}
 .a3-5 {
   fill: #252525;
 }
+div.a3-5 > i {
+  background-color: #252525;
+}
 .a4-5 {
-  fill: #cccccc;
+  fill: #969696;
+}
+div.a4-5 > i {
+  background-color: #969696;
 }

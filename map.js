@@ -62,6 +62,7 @@
 
     g_accidents = deps.append("g").attr("id", "accidents");
 
+    // Create legend bar and quantile used for colors
     var quantile = d3
       .scaleQuantile()
       .domain([
@@ -72,8 +73,6 @@
         ),
       ])
       .range(d3.range(9));
-
-    // Create legend bar
     const legend_g = svg.append("g").attr("id", "legend");
     const legend = legend_g.attr("transform", "translate(100, 430)");
     legend
@@ -88,6 +87,13 @@
       .attr("class", (d) => "q" + d + "-9");
     setScale(false);
 
+    // Append a DIV for the tooltip
+    var tooltip = d3
+      .select("body")
+      .append("div")
+      .attr("class", "tooltip")
+      .style("opacity", 0);
+
     // Init tooltip for each department
     csv.forEach(function (e, i) {
       d3.select("#d" + e.CODE_DEPT)
@@ -99,11 +105,10 @@
             } q${getColorQuantile(e)}-9`
         )
         .on("mouseover", function (d) {
-          div.transition().duration(200).style("opacity", 0.65);
-          div
-            .html(
-              `<b>Département : </b>
-              ${e.NOM_DEPT}
+          tooltip.transition().duration(350).style("opacity", 0.65);
+          tooltip.html(
+            `<b>Département : </b>
+              ${e.NOM_DEPT} - ${e.CODE_DEPT}
               <br>
               <b>Population : </b>
               ${e.POP}
@@ -114,22 +119,19 @@
               <b>Accidents/100'000 habitants : </b>
               ${Math.round((parseInt(e.ACCIDENTS) / parseInt(e.POP)) * 100000)}
               <br>`
-            )
-            .style("left", d.pageX + 30 + "px")
-            .style("top", d.pageY - 30 + "px");
+          );
         })
-        .on("mouseout", function (d) {
-          div.transition().duration(200).style("opacity", 0);
-          div.html("").style("left", "-500px").style("top", "-500px");
+        .on("mouseout", function () {
+          tooltip.transition().duration(500).style("opacity", 0);
+        })
+        .on("mousemove", function (event) {
+          let { width, height } = tooltip.node().getBoundingClientRect();
+          tooltip.style(
+            "transform",
+            `translate(${event.x}px, ${event.y - height * 2}px)`
+          );
         });
     });
-
-    // Append a DIV for the tooltip
-    var div = d3
-      .select("body")
-      .append("div")
-      .attr("class", "tooltip")
-      .style("opacity", 0);
 
     function getColorQuantile(e) {
       return quantile(parseInt(e.ACCIDENTS) / parseInt(e.POP));

@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Rapport du projet COD</title>
     <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="rapport.css" />
   </head>
   <body id="rapport-body">
     <nav id="topbar-menu">
@@ -14,8 +15,394 @@
         <li><a href="rapport.html">Rapport</a></li>
       </ul>
     </nav>
+
     <div id="rapport-container">
-      <iframe id="rapport" src="https://docs.google.com/document/d/e/2PACX-1vQ8p61GmuxZBzdo5mHvJxqIZeOnD0JlfxiHLPOuSELGZ4VmYHn7A9NrKTv0vlQK9c-5JbY8IHZSXlFr/pub?embedded=true"></iframe>
+      <div class="c21">
+        <p class="c19">
+          <span class="c0"
+            >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span
+          >
+        </p>
+        <p class="c23 title" id="h.n4k8hwkoab0c">
+          <span class="c22">RAPPORT CHALLENGE OPEN DATA</span>
+        </p>
+        <p class="c16 subtitle" id="h.o2t5nfkg3eq">
+          <span class="c12"
+            >Matthieu Petit, Hugo Pons, Joao Vitor Vargas Soares, Benjamin Cararo, Mathis
+            Lavigne</span
+          >
+        </p>
+        <p class="c2 c11"><span class="c0"></span></p>
+        <p class="c4">
+          <span
+            >Notre page web pr&eacute;sente la situation actuelle des accidents
+            automobiles en France, selon les d&eacute;partements, l&rsquo;heure et
+            quelques autres facteurs sous forme de diagrammes. Elle a pour objectif de
+            voir si les r&egrave;gles de s&eacute;curit&eacute; (port de la ceinture,
+            vitesse maximale autoris&eacute;e&hellip;) ont un r&eacute;el impact sur la
+            gravit&eacute; des accidents (proportion d&rsquo;accidents
+            graves|b&eacute;nins).</span
+          >
+        </p>
+        <p class="c2 c11"><span class="c0"></span></p>
+        <h1 class="c15" id="h.qrk1ro5i3bwf">
+          <span class="c9">1. Source des donn&eacute;es</span>
+        </h1>
+        <p class="c4">
+          <span class="c0"
+            >Les donn&eacute;es principales sur les accidents que nous avons
+            s&eacute;lectionn&eacute;es proviennent de Data.Gouv, un service public
+            fran&ccedil;ais plac&eacute; sous l&rsquo;autorit&eacute; du premier ministre
+            qui diffuse des donn&eacute;es publiques de l&rsquo;Etat. En particulier, ce
+            sont les bases de donn&eacute;es annuelles des accidents corporels de
+            circulation routi&egrave;re en 2019, publi&eacute;es par le Minist&egrave;re
+            de l&rsquo;Int&eacute;rieur, qui nous int&eacute;ressent.</span
+          >
+        </p>
+        <h3 class="c10" id="h.8puj8i83iawc"><span class="c6">Liens</span></h3>
+        <p class="c2">
+          <span class="c3"
+            ><a
+              class="c1"
+              href="https://www.google.com/url?q=https://www.data.gouv.fr/fr/datasets/bases-de-donnees-annuelles-des-accidents-corporels-de-la-circulation-routiere-annees-de-2005-a-2019/&amp;sa=D&amp;source=editors&amp;ust=1632946226013000&amp;usg=AOvVaw3aSqQvTtuqq_bv_ZX1j6sA"
+              >https://www.data.gouv.fr/fr/datasets/bases-de-donnees-annuelles-des-accidents-corporels-de-la-circulation-routiere-annees-de-2005-a-2019/</a
+            ></span
+          ><span class="c0">#_</span>
+        </p>
+        <p class="c4">
+          <span class="c0"
+            >Ces fichiers listent tous les accidents saisis par les forces de
+            l&rsquo;ordre qui ont eu lieu au cours des ann&eacute;es 2005 &agrave; 2019,
+            avec de nombreux param&egrave;tres disponibles : l&rsquo;heure, le
+            d&eacute;partement, les coordonn&eacute;es GPS, le type de v&eacute;hicule, le
+            type de voie, la luminosit&eacute;&hellip;</span
+          >
+        </p>
+        <p class="c4">
+          <span
+            >Nous les avons aussi crois&eacute;es avec d&rsquo;autres donn&eacute;es
+            pr&eacute;cises sur les d&eacute;partements fran&ccedil;ais: </span
+          ><span class="c3"
+            ><a
+              class="c1"
+              href="https://www.google.com/url?q=https://france-geojson.gregoiredavid.fr/&amp;sa=D&amp;source=editors&amp;ust=1632946226014000&amp;usg=AOvVaw1TV0MewtEocEw9okEAlAY8"
+              >https://france-geojson.gregoiredavid.fr/</a
+            ></span
+          ><span
+            >&nbsp;pour l&rsquo;affichage des cartes des r&eacute;gions et
+            d&eacute;partements, et </span
+          ><span class="c3"
+            ><a
+              class="c1"
+              href="https://www.google.com/url?q=https://www.insee.fr/fr/statistiques/4989753?sommaire%3D4989761&amp;sa=D&amp;source=editors&amp;ust=1632946226014000&amp;usg=AOvVaw0lyYU9qtbiTKStyZ5k-uIm"
+              >https://www.insee.fr/fr/statistiques/4989753?sommaire=4989761</a
+            ></span
+          ><span class="c0"
+            >&nbsp;pour les populations. De m&ecirc;me, nous avons
+            r&eacute;cup&eacute;r&eacute; des donn&eacute;es sur les arrondissement de
+            Paris :</span
+          >
+        </p>
+        <p class="c20">
+          <span class="c3"
+            ><a
+              class="c1"
+              href="https://www.google.com/url?q=https://www.data.gouv.fr/fr/datasets/arrondissements-1/&amp;sa=D&amp;source=editors&amp;ust=1632946226014000&amp;usg=AOvVaw1VjRtVDyfnkgZwnHlAdxlV"
+              >https://www.data.gouv.fr/fr/datasets/arrondissements-1/</a
+            ></span
+          ><span class="c0">&nbsp;(carte)</span>
+        </p>
+        <p class="c20">
+          <span class="c3"
+            ><a
+              class="c1"
+              href="https://www.google.com/url?q=https://94.citoyens.com/2019/population-2019-a-paris-par-arrondissement,07-01-2019.html&amp;sa=D&amp;source=editors&amp;ust=1632946226015000&amp;usg=AOvVaw3KFdMch9MSfozCTj9NHTtR"
+              >https://94.citoyens.com/2019/population-2019-a-paris-par-arrondissement,07-01-2019.html</a
+            ></span
+          ><span>&nbsp;(population par arrondissement).</span>
+        </p>
+        <h3 class="c10" id="h.pfv1r33z1fzp">
+          <span class="c6">Fichiers originaux utilis&eacute;s</span>
+        </h3>
+        <p class="c2"><span class="c13">caracteristiques-2019.csv</span></p>
+        <p class="c2"><span class="c8">usagers-2019.csv </span></p>
+        <p class="c2"><span class="c8">lieux-2019.csv</span></p>
+        <p class="c2"><span class="c8">population.csv</span></p>
+        <p class="c2"><span class="c8">departments.json</span></p>
+        <p class="c2"><span class="c13">arrondissements_paris.geojson</span></p>
+        <h1 class="c17" id="h.5n551x5tr1gs"><span class="c9">2. Traitement</span></h1>
+        <p class="c5">
+          <span>Trois scripts Python (avec les biblioth&egrave;ques </span
+          ><span class="c3"
+            ><a
+              class="c1"
+              href="https://www.google.com/url?q=https://pypi.org/project/pandas/&amp;sa=D&amp;source=editors&amp;ust=1632946226016000&amp;usg=AOvVaw2H2ASgi9ixOvNp160vFzQU"
+              >Pandas</a
+            ></span
+          ><span>&nbsp;et </span
+          ><span class="c3"
+            ><a
+              class="c1"
+              href="https://www.google.com/url?q=https://docs.python.org/fr/3/library/csv.html&amp;sa=D&amp;source=editors&amp;ust=1632946226016000&amp;usg=AOvVaw0tQ9xGxZOZDx080KwPcGUN"
+              >Csv</a
+            ></span
+          ><span>), et deux scripts NodeJS (avec la biblioth&egrave;que </span
+          ><span class="c3"
+            ><a
+              class="c1"
+              href="https://www.google.com/url?q=https://www.npmjs.com/package/csv-parse&amp;sa=D&amp;source=editors&amp;ust=1632946226017000&amp;usg=AOvVaw0ZBqexsyYRng74jvVDyiDM"
+              >csv-parse</a
+            ></span
+          ><span class="c0"
+            >) nous ont permis de traiter les donn&eacute;es pour nos
+            interpr&eacute;tations.</span
+          >
+        </p>
+        <p class="c4">
+          <span
+            >Un premier pr&eacute;-traitement des donn&eacute;es a &eacute;t&eacute;
+            r&eacute;alis&eacute; avec Python, afin de retirer les colonnes inutiles des
+            fichiers </span
+          ><span>caracteristiques-2019.csv</span
+          ><span class="c0"
+            >&nbsp;et population.csv. Ensuite, nous avons calcul&eacute; le nombre
+            d&rsquo;accidents total par r&eacute;gion, valeurs qui ont &eacute;t&eacute;
+            ajout&eacute;es dans une nouvelle colonne au fichier population.csv (infos des
+            d&eacute;partements) pour obtenir des donn&eacute;es proportionnelles au
+            nombre d&rsquo;habitants.</span
+          >
+        </p>
+        <p class="c4">
+          <span class="c0"
+            >Pour le graphe des accidents en fonction de l&rsquo;heure et du
+            d&eacute;partement s&eacute;lectionn&eacute;, un script NodeJS se charge de
+            cr&eacute;er un dictionnaire ayant pour cl&eacute;s chaque d&eacute;partement
+            et arrondissement, et en valeur un tableau vide de 24 cases. Puis, on
+            r&eacute;cup&egrave;re le d&eacute;partement et l&rsquo;heure &agrave;
+            laquelle se produit chaque accident, pour l&rsquo;ajouter dans le dictionnaire
+            avec la bonne cl&eacute;, et l&rsquo;heure comme index pour le tableau de
+            valeurs. En sortie, le dictionnaire est affich&eacute; en format JSON.</span
+          >
+        </p>
+        <p class="c4">
+          <span class="c0"
+            >Pour le graphe de gravit&eacute; de blessure en fonction du
+            d&eacute;partement s&eacute;lectionn&eacute;, un autre script NodeJS
+            cr&eacute;&eacute; le m&ecirc;me dictionnaire que pr&eacute;c&eacute;demment,
+            mais ayant pour valeur un tableau vide de 4 cases. Pour chaque accident, on
+            r&eacute;cup&egrave;re le d&eacute;partement en cl&eacute;, et gravit&eacute;
+            de l&rsquo;accident sur une &eacute;chelle de 0 &agrave; 3, qui va servir
+            d&rsquo;index pour la valeur de l&rsquo;entr&eacute;e du dictionnaire. La
+            sortie est aussi un dictionnaire en JSON.</span
+          >
+        </p>
+        <p class="c4">
+          <span class="c0"
+            >Dans un second temps, un autre script Python s&rsquo;occupe de rassembler,
+            pour chaque d&eacute;partement, le nombre d&rsquo;accidents par tranche de
+            vitesse maximale autoris&eacute;e (vma - limitation de vitesse) dans le
+            fichier vmaData.csv. Un script du m&ecirc;me type g&eacute;n&egrave;re un
+            autre fichier csv du nombre d&rsquo;accidents par tranche de vma, mais cette
+            fois-ci en s&eacute;parant &agrave; chaque fois les accidents selon la
+            gravit&eacute; (de 0 &agrave; 3).</span
+          >
+        </p>
+        <p class="c4">
+          <span class="c0"
+            >Enfin, un dernier script python s&rsquo;occupe de lier les donn&eacute;es
+            relatives aux accidents en fonction de la Vitesse Maximale Autoris&eacute;e
+            avec la gravit&eacute; des dommages corporels caus&eacute;s (Indemne,
+            bless&eacute; l&eacute;ger, bless&eacute; grave, d&eacute;c&egrave;s).</span
+          >
+        </p>
+        <p class="c4">
+          <span
+            >Ces scripts de pr&eacute;-traitement permettent d&rsquo;all&eacute;ger
+            consid&eacute;rablement le chargement de la page web et permettent ainsi
+            d&rsquo;&eacute;viter les calculs inutiles.</span
+          >
+        </p>
+        <h1 class="c15" id="h.uf2afe7yrh1k">
+          <span class="c9">3. Architecture et technologies </span>
+        </h1>
+        <p class="c18">
+          <span class="c0"
+            >Le site utilise d3js pour la repr&eacute;sentation de la carte de France et
+            le trac&eacute; des d&eacute;partements et arrondissements, &agrave;
+            l&rsquo;aide des donn&eacute;es geojson.</span
+          >
+        </p>
+        <p class="c5">
+          <span>Pour ce qui est des graphes, la librairie </span
+          ><span class="c3"
+            ><a
+              class="c1"
+              href="https://www.google.com/url?q=https://www.chartjs.org/&amp;sa=D&amp;source=editors&amp;ust=1632946226018000&amp;usg=AOvVaw1EyHHz02ic7huejhE_TtU0"
+              >ChartJS</a
+            ></span
+          ><span>&nbsp;</span><span class="c0">est utilis&eacute;e.</span>
+        </p>
+        <p class="c5 c11"><span class="c0"></span></p>
+        <p class="c5">
+          <span
+            >Les donn&eacute;es des fichiers csv, json et geojson sont tous
+            h&eacute;berg&eacute;s sur </span
+          ><span class="c3"
+            ><a
+              class="c1"
+              href="https://www.google.com/url?q=https://github.com/&amp;sa=D&amp;source=editors&amp;ust=1632946226018000&amp;usg=AOvVaw0LrqhItduz9xj9MQ6HxE5d"
+              >GitHub</a
+            ></span
+          ><span>, qui nous sert de CDN pour ce projet.</span>
+        </p>
+        <p class="c18">
+          <span class="c0"
+            >Concernant l&rsquo;architecture du site, nous avons choisi de s&eacute;parer
+            l&rsquo;&eacute;cran en 2 parties distinctes. Sur la gauche, une carte des
+            d&eacute;partements fran&ccedil;ais, et sur la droite la liste des
+            graphes.</span
+          >
+        </p>
+        <p class="c5">
+          <span class="c0"
+            >Quand on clique sur un d&eacute;partement, les donn&eacute;es et les
+            graphiques repr&eacute;sent&eacute;s &agrave; droite
+            s&rsquo;actualisent.</span
+          >
+        </p>
+        <p class="c5">
+          <span
+            >Le tutoriel suivant a &eacute;t&eacute; utilis&eacute; pour r&eacute;aliser
+            le zoom sur le d&eacute;partement choisi : </span
+          ><span class="c3"
+            ><a
+              class="c1"
+              href="https://www.google.com/url?q=https://bl.ocks.org/mbostock/9656675&amp;sa=D&amp;source=editors&amp;ust=1632946226019000&amp;usg=AOvVaw0SAN6u_IMbb-IZ9OM7f8wZ"
+              >Zoom to Bounding Box II</a
+            ></span
+          ><span class="c0">.</span>
+        </p>
+        <p class="c5">
+          <span
+            >Pour l&rsquo;affichage de la carte de France, nous nous sommes
+            inspir&eacute;s de celui-ci : </span
+          ><span class="c3"
+            ><a
+              class="c1"
+              href="https://www.google.com/url?q=https://www.datavis.fr/index.php?page%3Dmap-population&amp;sa=D&amp;source=editors&amp;ust=1632946226019000&amp;usg=AOvVaw3VmG2UfKI5vJQif096B-5X"
+              >D3JS - Cr&eacute;ation d&#39;une carte choropl&egrave;the</a
+            ></span
+          ><span>.</span>
+        </p>
+        <p class="c5 c11"><span class="c0"></span></p>
+        <p class="c5">
+          <span class="c0"
+            >Nous avons aussi d&eacute;cid&eacute; de s&eacute;parer le code qui permet
+            d&rsquo;instancier et actualiser chaque graphe, dans des scripts JS distincts
+            afin de pouvoir travailler de fa&ccedil;on individuelle plus facilement. En
+            effet, chaque graphe est compos&eacute; d&rsquo;une fonction
+            d&rsquo;instanciation et de mise &agrave; jour.</span
+          >
+        </p>
+        <p class="c7"><span class="c0"></span></p>
+        <p class="c5">
+          <span class="c0"
+            >Tous les accidents, repr&eacute;sent&eacute;s par des points, &eacute;tant
+            trop lourds &agrave; afficher en m&ecirc;me temps sur la carte de France, nous
+            avons choisi de les pr&eacute;senter seulement lorsqu&rsquo;un
+            d&eacute;partement est cliqu&eacute;.</span
+          >
+        </p>
+        <p class="c5">
+          <span
+            >De plus, le d&eacute;partement de Paris comportant aussi trop
+            d&rsquo;accidents pour les repr&eacute;senter en m&ecirc;me temps, nous avons
+            ajout&eacute; le trac&eacute; des arrondissements parisiens pour
+            all&eacute;ger le traitement des donn&eacute;es, et avoir une
+            repr&eacute;sentation plus pr&eacute;cise.</span
+          >
+        </p>
+        <h1 class="c17" id="h.tsifonmo09sw">
+          <span>4</span><span>. Analyse Green IT</span>
+        </h1>
+        <p class="c5">
+          <span class="c0"
+            >L&rsquo;analyse Green IT a &eacute;t&eacute; r&eacute;alis&eacute;e via
+            Mozilla Firefox 92.0.1 sous Linux Mint 20.2.</span
+          >
+        </p>
+        <p class="c5">
+          <span
+            >L&rsquo;extension utilis&eacute;e s&rsquo;appelle GreenIT Analysis V2.2.0. Le
+            GitHub de l&rsquo;extension est situ&eacute; &agrave; cette adresse : </span
+          ><span class="c3"
+            ><a
+              class="c1"
+              href="https://www.google.com/url?q=https://github.com/cnumr/GreenIT-Analysis/&amp;sa=D&amp;source=editors&amp;ust=1632946226020000&amp;usg=AOvVaw0RVM5zf-dNhNQL2zcFw2-W"
+              >cnumr/GreenIT-Analysis: GreenIT-Analysis</a
+            ></span
+          >
+        </p>
+        <p class="c5 c11"><span class="c0"></span></p>
+        <p class="c5">
+          <span
+            >Nous avons fait en sorte de supprimer toutes les croix rouges et oranges.
+            Apr&egrave;s optimisation du site, nous avons r&eacute;ussi &agrave; avoir un </span
+          ><span>EcoIndex</span><span class="c0">&nbsp;A et 100% de cases vertes.</span>
+        </p>
+        <p class="c5 c11"><span class="c0"></span></p>
+        <p class="c5">
+          <span>L&rsquo;image suivante montre le rapport complet de Green IT :</span
+          ><span
+            style="
+              overflow: hidden;
+              display: inline-block;
+              margin: 0px 0px;
+              border: 0px solid #000000;
+              transform: rotate(0rad) translateZ(0px);
+              -webkit-transform: rotate(0rad) translateZ(0px);
+              width: 717.27px;
+              height: 315.9px;
+            "
+            ><img
+              alt=""
+              src="images/image1.png"
+              style="
+                width: 810.3px;
+                height: 315.9px;
+                margin-left: -15.15px;
+                margin-top: 0px;
+                transform: rotate(0rad) translateZ(0px);
+                -webkit-transform: rotate(0rad) translateZ(0px);
+              "
+              title="" /></span
+          ><span
+            style="
+              overflow: hidden;
+              display: inline-block;
+              margin: 0px 0px;
+              border: 0px solid #000000;
+              transform: rotate(0rad) translateZ(0px);
+              -webkit-transform: rotate(0rad) translateZ(0px);
+              width: 710.17px;
+              height: 102.97px;
+            "
+            ><img
+              alt=""
+              src="images/image2.png"
+              style="
+                width: 813.5px;
+                height: 102.97px;
+                margin-left: -9.46px;
+                margin-top: 0px;
+                transform: rotate(0rad) translateZ(0px);
+                -webkit-transform: rotate(0rad) translateZ(0px);
+              "
+              title=""
+          /></span>
+        </p>
+      </div>
     </div>
   </body>
 </html>

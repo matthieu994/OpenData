@@ -38,6 +38,15 @@
         <canvas id="gravite" height="500px"></canvas>
         <canvas id="max_speed_pie_chart" height="500px"></canvas>
         <canvas id="vmagravite"></canvas>
+        <div>
+          <select id="selectVehicule">
+            <option value="">Choisir type de véhicule</option>
+            <option value="car">Voiture</option>
+            <option value="bike">Vélo</option>
+            <option value="moto">Motocyclette</option>
+          </select>
+        </div>
+        <canvas id="securite_gravite"></canvas>
       </div>
     </div>
     <script>
@@ -46,6 +55,7 @@
       promises.push(d3.csv("data/pop_accidents.csv"));
       promises.push(d3.csv("data/caracteristiques-2019-trimmed.csv"));
       promises.push(d3.json("data/arrondissements_paris.geojson"));
+      promises.push(d3.json("data/securityEquipaments.json"));
     </script>
     <script src="map.js"></script>
     <script src="range.js"></script>
@@ -53,5 +63,6 @@
     <script src="gravite.js"></script>
     <script src="vmagravite.js"></script>
     <script src="vmaPieChart.js"></script>
+    <script src="equipamentSecurite.js"></script>
   </body>
 </html>

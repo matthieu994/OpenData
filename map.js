@@ -195,6 +195,7 @@
       if (!isArrond) {
         updateVmaGraviteChart(code, name);
         updateVMAChart(code, name);
+        updateSecuriteGraviteChart(code, name);
       }
 
       if (!isParis || isArrond) {
@@ -211,6 +212,7 @@
       updateGraviteChart(null);
       updateVmaGraviteChart(null);
       updateVMAChart(null);
+      updateSecuriteGraviteChart(null);
 
       setScale(false);
       active.classed("selected", false);

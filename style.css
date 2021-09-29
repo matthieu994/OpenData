@@ -189,6 +189,12 @@ circle {
   margin-right: 2vw;
 }
 
+.doughnut-container {
+  position: relative;
+  width: 100%;
+  text-align: center;
+}
+
 #legend {
   opacity: 1;
   transition: all 1s;

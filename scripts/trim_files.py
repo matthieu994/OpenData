@@ -53,7 +53,7 @@ while True:
 
 accident_file.close()
 
-# === REDUCTION DU FICHIER POPULATION.CSV
+# === REDUCTION DU FICHIER POPULATION.CSV ET AJOUT DU NOMBRE D'ACCIDENTS
 
 data = pd.read_csv('population.csv')
 

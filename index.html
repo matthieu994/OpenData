@@ -43,10 +43,26 @@
     </div>
     <script>
       const promises = [];
-      promises.push(d3.json("data/departments.json"));
-      promises.push(d3.csv("data/pop_accidents.csv"));
-      promises.push(d3.csv("data/caracteristiques-2019-trimmed.csv"));
-      promises.push(d3.json("data/arrondissements_paris.geojson"));
+      promises.push(
+        d3.json(
+          "https://raw.githubusercontent.com/matthieu994/OpenData/master/data/departments.json"
+        )
+      );
+      promises.push(
+        d3.csv(
+          "https://raw.githubusercontent.com/matthieu994/OpenData/master/data/pop_accidents.csv"
+        )
+      );
+      promises.push(
+        d3.csv(
+          "https://raw.githubusercontent.com/matthieu994/OpenData/master/data/caracteristiques-2019-trimmed.csv"
+        )
+      );
+      promises.push(
+        d3.json(
+          "https://raw.githubusercontent.com/matthieu994/OpenData/master/data/arrondissements_paris.geojson"
+        )
+      );
     </script>
     <script src="map.js"></script>
     <script src="range.js"></script>

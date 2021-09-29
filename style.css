@@ -187,9 +187,6 @@ circle {
 .pie-container > canvas {
   display: inline-block !important;
 }
-.pie-container > canvas:first-of-type {
-  margin-right: 2vw;
-}
 
 .doughnut-container {
   position: relative;
@@ -243,4 +240,22 @@ body:not(.selected) #accidents {
   svg {
     transform: scale(1.5);
   }
+}
+
+
+
+/* ***************** RAPPORT ****************** */
+
+#rapport-body {
+  overflow: hidden;
+}
+
+#rapport-container {
+  width: 100%;
+  height: 100%;
+}
+
+#rapport {
+  width: 100%;
+  height: 100%;
 }

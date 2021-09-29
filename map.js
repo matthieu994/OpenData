@@ -211,7 +211,7 @@
       updateVmaGraviteChart(null);
       updateSecuGraviteChart(null);
       updateVMAChart(null);
-      updateSecuriteGraviteChart(95);
+      updateSecuriteGraviteChart(null);
 
       setScale(false);
       active.classed("selected", false);

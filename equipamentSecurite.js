@@ -39,7 +39,7 @@ function securiteGraviteChart(values) {
         },
         title: {
           display: true,
-          text: "Gravité des accidents en fonction du type de véhicule en FRANCE (pourcentage)",
+          text: "Gravité des accidents en fonction du type de véhicule en FRANCE",
         },
       },
     },
@@ -54,15 +54,14 @@ d3.json(
 function updateSecuriteGraviteChart(dept, dept_name, vehicle) {
   let code = dept ? dept : securite_gravite_dept;
 
-  if (dept && dept_name) {
+  if (!vehicle) {
     if (dept === null) {
       code = 95;
       securite_gravite_chart.options.plugins.title.text =
-        "Gravité des accidents en fonction du type de véhicule en FRANCE (pourcentage)";
+        "Gravité des accidents en fonction du type de véhicule en FRANCE";
     } else {
       securite_gravite_chart.options.plugins.title.text =
-        "Gravité des accidents en fonction du type de véhicule à " +
-        dept_name + " (pourcentage)";
+        "Gravité des accidents en fonction du type de véhicule à " + dept_name + "";
     }
   }
 

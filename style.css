@@ -202,7 +202,6 @@ circle {
   width: 70%;
   text-align: center;
   display: inline !important;
-
 }
 
 #legend {
@@ -241,8 +240,6 @@ body:not(.selected) #accidents {
     transform: scale(1.5);
   }
 }
-
-
 
 /* ***************** RAPPORT ****************** */
 

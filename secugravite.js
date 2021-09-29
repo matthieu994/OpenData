@@ -10,7 +10,7 @@ function secuGraviteChart(values) {
     labels: labels,
     datasets: [
       {
-        label: "Indemmes",
+        label: "Indemnes",
         data: indemnes,
         backgroundColor: "#2c9c69",
       },

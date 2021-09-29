@@ -7,10 +7,10 @@ function securiteGraviteChart(values) {
 
   let [indemnes, deces, graves, legers, tot] = getSecuriteDataForDept(95);
   const CHART_COLORS = {
-    fi: "#6454ac",
-    s: "#5bc0de",
-    t: "#fc8c84",
-    fo: "#64a49d",
+    fi: "#2c9c69",
+    s: "#dbba34",
+    t: "#c62f29",
+    fo: "#000000",
   };
   var data_accidents = [
     (indemnes / tot) * 100,
@@ -19,7 +19,7 @@ function securiteGraviteChart(values) {
     (deces / tot) * 100,
   ];
   const data = {
-    labels: ["Indemmes", "Blessés légers", "Blessés graves", "Décès"],
+    labels: ["Indemnes", "Blessés légers", "Blessés graves", "Décès"],
     datasets: [
       {
         data: data_accidents,

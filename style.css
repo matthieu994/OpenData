@@ -187,9 +187,6 @@ circle {
 .pie-container > canvas {
   display: inline-block !important;
 }
-.pie-container > canvas:first-of-type {
-  margin-right: 2vw;
-}
 
 .doughnut-container {
   position: relative;

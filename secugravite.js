@@ -56,7 +56,7 @@ function secuGraviteChart(values) {
 
   secu_gravite_chart = new Chart(document.getElementById("secugravite"), config);
 }
-d3.json("data/securityEquipaments.json").then((data) => secuGraviteChart(data));
+d3.json("https://raw.githubusercontent.com/matthieu994/OpenData/master/data/securityEquipaments.json").then((data) => secuGraviteChart(data));
 
 function updateSecuGraviteChart(dept, dept_name) {
   if (dept === null) {

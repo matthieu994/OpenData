@@ -194,6 +194,7 @@
       updateGraviteChart(code, name);
       if (!isArrond) {
         updateVmaGraviteChart(code, name);
+        updateSecuGraviteChart(code, name);
         updateVMAChart(code, name);
       }
 
@@ -210,6 +211,7 @@
       updateDeptChart(null);
       updateGraviteChart(null);
       updateVmaGraviteChart(null);
+      updateSecuGraviteChart(null);
       updateVMAChart(null);
 
       setScale(false);

@@ -1,10 +1,10 @@
 let gravite_chart;
 var sum = 55314 + 53307 + 20858 + 3498;
 const data_accidents = [
-  (55314 / sum) * 100,
-  (53307 / sum) * 100,
-  (20858 / sum) * 100,
-  (3498 / sum) * 100,
+  (55314)/* / sum) * 100*/,
+  (53307)/* / sum) * 100*/,
+  (20858)/* / sum) * 100*/,
+  (3498 )/*/ sum) * 100*/,
 ];
 
 function graviteChart() {

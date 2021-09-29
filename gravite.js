@@ -16,7 +16,7 @@ function graviteChart() {
   };
 
   const data = {
-    labels: ["Indemmes", "Blessés légers", "Blessés graves", "Décès"],
+    labels: ["Indemnes", "Blessés légers", "Blessés graves", "Décès"],
     datasets: [
       {
         label: "Comment se portent les accidentés après accident (pourcentage)",

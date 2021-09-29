@@ -19,7 +19,7 @@ function securiteGraviteChart(values) {
     (deces / tot) * 100,
   ];
   const data = {
-    labels: ["Indemmes", "Blessés légers", "Blessés graves", "Décès"],
+    labels: ["Indemnes", "Blessés légers", "Blessés graves", "Décès"],
     datasets: [
       {
         data: data_accidents,

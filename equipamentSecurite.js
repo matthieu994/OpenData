@@ -72,12 +72,11 @@ function updateSecuriteGraviteChart(dept, dept_name) {
   securite_gravite_chart.data.datasets[0].data[3] = (deces / tot) * 100;
   securite_gravite_chart.update();
 }
+function getSecuriteDataForDept(dept, vehicle) {
 
-function getSecuriteDataForDept(dept, typeVehicule) {
   if (!all_values_securite_bar[dept]) dept = "all";
   else dept = String(dept);
-
-  var vma50 = all_values_securite_bar[dept]["carSeverity"];
+  var vma50 = all_values_securite_bar[dept][vehicle];
   // console.log(vma50);
   // var vma80to90 = JSON.parse(all_values_securite_bar[dept]["80to90kmh"]);
   // var vma110 = JSON.parse(all_values_securite_bar[dept]["110kmh"]);
@@ -91,9 +90,6 @@ function getSecuriteDataForDept(dept, typeVehicule) {
     [vma50["tot"]],
   ];
 }
-
-function getTypeVehicule(vehicule) {}
-
-document.querySelector("#selectVehicule").addEventListener("change", (e) => {
-  const vehicle = e.target.value;
+document.querySelector("#selectVehicle").addEventListener("change", (e) => {
+   const vehicle = e.target.value;
 });

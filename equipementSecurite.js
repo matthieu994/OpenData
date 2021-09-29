@@ -46,9 +46,10 @@ function securiteGraviteChart(values) {
   };
 
   securite_gravite_chart = new Chart(document.getElementById("securite_gravite"), config);
+  secuGraviteChart(values);
 }
 d3.json(
-  "https://raw.githubusercontent.com/matthieu994/OpenData/master/data/securityEquipaments.json"
+  "https://raw.githubusercontent.com/matthieu994/OpenData/master/data/securityequipements.json"
 ).then((data) => securiteGraviteChart(data));
 
 function updateSecuriteGraviteChart(dept, dept_name, vehicle) {
@@ -61,7 +62,7 @@ function updateSecuriteGraviteChart(dept, dept_name, vehicle) {
         "Gravité des accidents en fonction du type de véhicule en FRANCE";
     } else {
       securite_gravite_chart.options.plugins.title.text =
-        "Gravité des accidents en fonction du type de véhicule à " + dept_name + "";
+        "Gravité des accidents en fonction du type de véhicule en " + dept_name + "";
     }
   }
 

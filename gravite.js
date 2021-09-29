@@ -54,7 +54,7 @@ function updateGraviteChart(dept, dept_name) {
   } else {
     gravite_chart.data.datasets[0].data = distrib_dept_gravite[`${dept}`];
     gravite_chart.options.plugins.title.text =
-      "Gravité de blessure des usagers à " + dept_name;
+      "Gravité de blessure des usagers en " + dept_name;
   }
   gravite_chart.update();
 }

@@ -70,7 +70,7 @@ function updateVmaGraviteChart(dept, dept_name) {
       "Gravité des accidents en fonction de la VMA en FRANCE";
   } else {
     vma_gravite_chart.options.plugins.title.text =
-      "Gravité des accidents en fonction de la VMA à " + dept_name;
+      "Gravité des accidents en fonction de la VMA en " + dept_name;
   }
 
   let [indemnes, deces, graves, legers] = getVMADataForDept(code);

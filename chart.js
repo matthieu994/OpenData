@@ -48,7 +48,7 @@ function updateDeptChart(dept, dept_name) {
   } else {
     hours_chart.data.datasets[0].data = distrib_hours_depts[`${dept}`];
     hours_chart.options.plugins.title.text =
-      "Nombre d'accidents en fonction de l'heure à " + dept_name;
+      "Nombre d'accidents en fonction de l'heure en " + dept_name;
   }
   hours_chart.update();
 }

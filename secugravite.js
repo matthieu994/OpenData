@@ -56,7 +56,6 @@ function secuGraviteChart(values) {
 
   secu_gravite_chart = new Chart(document.getElementById("secugravite"), config);
 }
-d3.json("https://raw.githubusercontent.com/matthieu994/OpenData/master/data/securityEquipaments.json").then((data) => secuGraviteChart(data));
 
 function updateSecuGraviteChart(dept, dept_name) {
   if (dept === null) {
@@ -66,7 +65,9 @@ function updateSecuGraviteChart(dept, dept_name) {
   } else {
     code = dept;
     secu_gravite_chart.options.plugins.title.text =
-      "Gravité des accidents en fonction du port de la ceinture à " + dept_name + " (pourcentage)";
+      "Gravité des accidents en fonction du port de la ceinture en " +
+      dept_name +
+      " (pourcentage)";
   }
 
   let [indemnes, deces, graves, legers] = getSecuDataForDept(code);
@@ -83,9 +84,21 @@ function getSecuDataForDept(dept) {
   var val = all_values_secu_bar[dept];
 
   return [
-    [val["car"]["belt"]["1"]/val["car"]["belt"]["tot"]*100, val["car"]["nothing"]["1"]/val["car"]["nothing"]["tot"]*100],
-    [val["car"]["belt"]["4"]/val["car"]["belt"]["tot"]*100, val["car"]["nothing"]["4"]/val["car"]["nothing"]["tot"]*100],
-    [val["car"]["belt"]["3"]/val["car"]["belt"]["tot"]*100, val["car"]["nothing"]["3"]/val["car"]["nothing"]["tot"]*100],
-    [val["car"]["belt"]["2"]/val["car"]["belt"]["tot"]*100, val["car"]["nothing"]["2"]/val["car"]["nothing"]["tot"]*100],
+    [
+      (val["car"]["belt"]["1"] / val["car"]["belt"]["tot"]) * 100,
+      (val["car"]["nothing"]["1"] / val["car"]["nothing"]["tot"]) * 100,
+    ],
+    [
+      (val["car"]["belt"]["4"] / val["car"]["belt"]["tot"]) * 100,
+      (val["car"]["nothing"]["4"] / val["car"]["nothing"]["tot"]) * 100,
+    ],
+    [
+      (val["car"]["belt"]["3"] / val["car"]["belt"]["tot"]) * 100,
+      (val["car"]["nothing"]["3"] / val["car"]["nothing"]["tot"]) * 100,
+    ],
+    [
+      (val["car"]["belt"]["2"] / val["car"]["belt"]["tot"]) * 100,
+      (val["car"]["nothing"]["2"] / val["car"]["nothing"]["tot"]) * 100,
+    ],
   ];
 }

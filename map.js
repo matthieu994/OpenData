@@ -183,9 +183,11 @@
         .attr("transform", "translate(" + translate + ")scale(" + scale + ")");
 
       // Update charts
-      let code = !d.properties.CODE_DEPT.match(/[A-Z]/gi)
-          ? parseInt(d.properties.CODE_DEPT)
-          : d.properties.CODE_DEPT || d.properties.c_arinsee,
+      let code = d.properties?.CODE_DEPT
+          ? !d.properties.CODE_DEPT.match(/[A-Z]/gi)
+            ? parseInt(d.properties.CODE_DEPT)
+            : d.properties.CODE_DEPT
+          : d.properties.c_arinsee,
         name = d.properties.NOM_DEPT || d.properties.l_ar + " - Paris";
       updateDeptChart(code, name);
       updateGraviteChart(code, name);

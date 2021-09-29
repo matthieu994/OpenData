@@ -61,7 +61,7 @@ function updateVMAChart(dept, dept_name) {
       "Accidents par vitesse maximale autorisée en FRANCE";
   } else {
     vma_chart.options.plugins.title.text =
-      "Accidents par vitesse maximale autorisée à " + dept_name;
+      "Accidents par vitesse maximale autorisée en " + dept_name;
   }
 
   vma_chart.data.datasets[0].data = getDataForDepartement(dept);

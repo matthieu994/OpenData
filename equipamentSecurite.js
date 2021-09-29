@@ -51,7 +51,9 @@ function securiteGraviteChart(values) {
 
   securite_gravite_chart = new Chart(document.getElementById("securite_gravite"), config);
 }
-d3.json("data/securityEquipaments.json").then((data) => securiteGraviteChart(data));
+d3.json(
+  "https://raw.githubusercontent.com/matthieu994/OpenData/master/data/securityEquipaments.json"
+).then((data) => securiteGraviteChart(data));
 
 function updateSecuriteGraviteChart(dept, dept_name, vehicle) {
   let code = dept ? parseInt(dept) : securite_gravite_dept;
